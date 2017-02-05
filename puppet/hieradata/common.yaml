@@ -1,0 +1,80 @@
+---
+
+adminserver_address: "10.10.10.10"
+node1_address:       "10.10.10.100"
+node2_address:       "10.10.10.200"
+
+domain_adminserver_address: &domain_adminserver_address "%{hiera('adminserver_address')}"
+domain_node1_address:       &domain_node1_address       "%{hiera('node1_address')}"
+domain_node2_address:       &domain_node2_address       "%{hiera('node2_address')}"
+
+hosts:
+  'localhost':
+    ip:                "127.0.0.1"
+    host_aliases:      'localhost.localdomain,localhost4,localhost4.localdomain4'
+  'admin.example.com':
+    ip:                *domain_adminserver_address
+    host_aliases:      'admin'
+  'node1.example.com':
+    ip:                *domain_node1_address
+    host_aliases:      'node1'
+  'node2.example.com':
+    ip:                *domain_node2_address
+    host_aliases:      'node2'
+  'emapp.example.com':
+    ip:                "10.10.10.25"
+    host_aliases:      'emapp'
+
+
+# global WebLogic vars
+wls_oracle_base_home_dir: &wls_oracle_base_home_dir "/opt/oracle"
+wls_weblogic_home_dir:    &wls_weblogic_home_dir    "/opt/oracle/middleware12c/wlserver"
+wls_middleware_home_dir:  &wls_middleware_home_dir  "/opt/oracle/middleware12c"
+wls_version:              &wls_version              12212
+
+# global OS vars
+wls_source:               &wls_source               "/software"
+wls_jdk_home_dir:         &wls_jdk_home_dir         "/usr/java/latest"
+wls_log_dir:              &wls_log_dir              "/var/log/weblogic"
+
+wls_domains_dir:          &wls_domains_dir          '/opt/oracle/wlsdomains/domains'
+wls_apps_dir:             &wls_apps_dir             '/opt/oracle/wlsdomains/applications'
+
+wls_jsse_enabled:         true
+
+orawls::weblogic::version:                   *wls_version
+orawls::weblogic::filename:                  'fmw_12.2.1.2.0_wls.jar'
+orawls::weblogic::log_output:                true
+orawls::weblogic::jdk_home_dir:              *wls_jdk_home_dir
+orawls::weblogic::oracle_base_home_dir:      *wls_oracle_base_home_dir
+orawls::weblogic::puppet_download_mnt_point: *wls_source
+orawls::weblogic::remote_file:               false
+orawls::weblogic::wls_domains_dir:           *wls_domains_dir
+orawls::weblogic::wls_apps_dir:              *wls_apps_dir
+orawls::weblogic::middleware_home_dir:       *wls_middleware_home_dir
+
+# fmw_installations:
+
+opatch_instances:
+  '24910964':
+    ensure:                   'present'
+    oracle_product_home_dir:  *wls_middleware_home_dir
+    patch_id:                 24910964
+    patch_file:               "p24910964_122120_Generic.zip"
+
+# handy WebLogic scripts in /opt/scripts/wls
+orautils::os_oracle_home:      *wls_oracle_base_home_dir
+orautils::ora_inventory:       "/opt/oracle/oraInventory"
+orautils::os_domain_type:      "admin"
+orautils::os_log_folder:       *wls_log_dir
+orautils::os_download_folder:  '/var/tmp/install'
+orautils::os_mdw_home:         *wls_middleware_home_dir
+orautils::os_wl_home:          *wls_weblogic_home_dir
+orautils::ora_user:            'oracle'
+
+orautils::node_mgr_port:       5556
+
+orautils::wls_user:           'weblogic'
+orautils::jsse_enabled:       true
+
+
