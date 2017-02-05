@@ -15,7 +15,7 @@ node 'admin.example.com' {
   include bsu
   include fmw
   include opatch
-  # include domains
+  include domains
   # include nodemanager, startwls, userconfig
   # include security
   # include basic_config
