@@ -106,57 +106,69 @@ wls_setting_instances:
 #   'wlsDomain':
 #     log_output:           *logoutput
 
-# # create and startup the nodemanager
-# nodemanager_instances:
-#   'nodemanager':
-#     log_output:                            *logoutput
-#     log_file:                              'nodemanager_wls1221.log'
-#     extra_arguments:                       '-Daa=1 -Dbb=2'
-#     custom_identity:                       true
-#     custom_identity_keystore_filename:     '/vagrant/identity_admin.jks'
-#     custom_identity_keystore_passphrase:   'welcome'
-#     custom_identity_alias:                 'admin'
-#     custom_identity_privatekey_passphrase: 'welcome'
-#     nodemanager_address:                   *domain_adminserver_address
-#     sleep:                                 21
-#     properties:
-#       'log_level':                         'INFO'
-#       'log_count':                         '2'
-#       'log_append':                        true
-#       'log_formatter':                     'weblogic.nodemanager.server.LogFormatter'
-#       'listen_backlog':                    60
-#   'nodemanager_plain':
-#     log_output:                            *logoutput
-#     log_file:                              'nodemanager_plain.log'
-#     nodemanager_address:                   *domain_adminserver_address
-#     nodemanager_port:                      5557
-#     domain_name:                           "plain_Wls"
-#     custom_trust:                          false
-#     custom_identity:                       false
-#     nodemanager_secure_listener:           false
-#     sleep:                                 21
+# create and startup the nodemanager
+nodemanager_instances:
+  'nodemanager':
+    weblogic_home_dir:                     *wls_weblogic_home_dir 
+    log_file:                              'nodemanager_wls1221.log'
+    extra_arguments:                       '-Daa=1 -Dbb=2'
+    custom_trust:                          *wls_custom_trust
+    trust_keystore_file:                   *wls_trust_keystore_file
+    trust_keystore_passphrase:             *wls_trust_keystore_passphrase
+    custom_identity:                       true
+    custom_identity_keystore_filename:     '/vagrant/identity_admin.jks'
+    custom_identity_keystore_passphrase:   'welcome'
+    custom_identity_alias:                 'admin'
+    custom_identity_privatekey_passphrase: 'welcome'
+    nodemanager_address:                   *domain_adminserver_address
+    domain_name:                           *domain_name
+    jsse_enabled:                          *wls_jsse_enabled
+    sleep:                                 21
+    properties:
+      'log_level':                         'INFO'
+      'log_count':                         '2'
+      'log_append':                        true
+      'log_formatter':                     'weblogic.nodemanager.server.LogFormatter'
+      'listen_backlog':                    60
+  'nodemanager_plain':
+    weblogic_home_dir:                     *wls_weblogic_home_dir 
+    log_file:                              'nodemanager_plain.log'
+    nodemanager_address:                   *domain_adminserver_address
+    nodemanager_port:                      5557
+    domain_name:                           "plain_Wls"
+    custom_trust:                          false
+    custom_identity:                       false
+    nodemanager_secure_listener:           false
+    sleep:                                 21
+    jsse_enabled:                          *wls_jsse_enabled
 
 
-# # startup adminserver for extra configuration
-# control_instances:
-#   'startWLSAdminServer':
-#      domain_name:                 *domain_name
-#      server_type:                 'admin'
-#      target:                      'Server'
-#      server:                      *domain_adminserver
-#      action:                      'start'
-#      log_output:                  *logoutput
-#   'startWLSAdminServer_plain':
-#      domain_name:                 'plain_Wls'
-#      server_type:                 'admin'
-#      nodemanager_port:             5557
-#      nodemanager_secure_listener:  false
-#      custom_trust:                 false
-#      target:                       'Server'
-#      server:                       *domain_adminserver
-#      action:                       'start'
-#      log_output:                   *logoutput
-
+# startup adminserver for extra configuration
+control_instances:
+  'startWLSAdminServer':
+     weblogic_home_dir:           *wls_weblogic_home_dir 
+     domain_name:                 *domain_name
+     server_type:                 'admin'
+     target:                      'Server'
+     action:                      'start'
+     custom_trust:                *wls_custom_trust
+     trust_keystore_file:         *wls_trust_keystore_file
+     trust_keystore_passphrase:   *wls_trust_keystore_passphrase
+     jsse_enabled:                *wls_jsse_enabled
+     adminserver_address:         *domain_adminserver_address
+     weblogic_password:           *domain_wls_password                 
+  'startWLSAdminServer_plain':
+     weblogic_home_dir:           *wls_weblogic_home_dir 
+     domain_name:                 'plain_Wls'
+     server_type:                 'admin'
+     nodemanager_port:            5557
+     nodemanager_secure_listener: false
+     custom_trust:                false
+     target:                      'Server'
+     action:                      'start'
+     jsse_enabled:                *wls_jsse_enabled
+     adminserver_address:         *domain_adminserver_address
+     weblogic_password:           *domain_wls_password   
 
 # authentication_provider_instances:
 #   'DefaultAuthenticator':
