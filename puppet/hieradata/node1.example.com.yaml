@@ -8,6 +8,10 @@ wls_weblogic_user:        &wls_weblogic_user        "weblogic"
 wls_weblogic_home_dir:    &wls_weblogic_home_dir    "/opt/oracle/middleware12c/wlserver"
 wls_middleware_home_dir:  &wls_middleware_home_dir  "/opt/oracle/middleware12c"
 
+wls_jsse_enabled:         &wls_jsse_enabled         true
+wls_log_dir:              &wls_log_dir              "/var/log/weblogic"
+
+
 # when you have just one domain on a server
 domain_name:                &domain_name                "Wls1221"
 domain_adminserver:         &domain_adminserver         "AdminServer"
@@ -40,17 +44,44 @@ wls_trust_keystore_passphrase:     &wls_trust_keystore_passphrase 'welcome'
 # copy domains to other nodes
 copy_instances:
   'wlsDomain':
-     log_output:              *logoutput
-     use_t3s:                 true
+     log_output:                *logoutput
+     weblogic_home_dir:         *wls_weblogic_home_dir 
+     domain_name:               *domain_name
+     jsse_enabled:              *wls_jsse_enabled
+     adminserver_address:       *domain_adminserver_address
+     weblogic_user:             'weblogic'
+     weblogic_password:         *domain_wls_password
+     server_start_mode:         'prod'
+     log_dir:                   *wls_log_dir
+     custom_trust:              *wls_custom_trust
+     trust_keystore_file:       *wls_trust_keystore_file
+     trust_keystore_passphrase: *wls_trust_keystore_passphrase
 
 # create and startup the nodemanager
 nodemanager_instances:
   'nodemanager':
+    weblogic_home_dir:                     *wls_weblogic_home_dir 
+    log_file:                              'nodemanager_wls1221.log'
     log_output:                            *logoutput
-    nodemanager_address:                   *domain_node1_address
+    extra_arguments:                       '-Daa=1 -Dbb=2'
+    custom_trust:                          *wls_custom_trust
+    trust_keystore_file:                   *wls_trust_keystore_file
+    trust_keystore_passphrase:             *wls_trust_keystore_passphrase
     custom_identity:                       true
     custom_identity_keystore_filename:     '/vagrant/identity_node1.jks'
     custom_identity_keystore_passphrase:   'welcome'
     custom_identity_alias:                 'node1'
     custom_identity_privatekey_passphrase: 'welcome'
+    nodemanager_address:                   *domain_node1_address
+    domain_name:                           *domain_name
+    jsse_enabled:                          *wls_jsse_enabled
+    sleep:                                 21
+    properties:
+      'log_level':                         'INFO'
+      'log_count':                         '2'
+      'log_append':                        true
+      'log_formatter':                     'weblogic.nodemanager.server.LogFormatter'
+      'listen_backlog':                    60
+
+
 

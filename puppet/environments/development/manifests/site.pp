@@ -16,18 +16,17 @@ node 'admin.example.com' {
   include fmw
   include opatch
   include domains
-  include nodemanager, startwls
-  #, userconfig
-  # include security
-  # include basic_config
-  # include datasources
-  # include virtual_hosts
-  # include workmanagers
-  # include file_persistence
-  # include jms
-  # include mt
-  # include pack_domain
-  # include deployments
+  include nodemanager, startwls, userconfig
+  include security
+  include basic_config
+  include datasources
+  include virtual_hosts
+  include workmanagers
+  include file_persistence
+  include jms
+  include mt
+  include pack_domain
+  include deployments
 
   # include ora_em_agent
 
