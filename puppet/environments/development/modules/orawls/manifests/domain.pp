@@ -7,8 +7,8 @@ define orawls::domain (
   String $weblogic_home_dir                               = $::orawls::weblogic::weblogic_home_dir,
   String $middleware_home_dir                             = $::orawls::weblogic::middleware_home_dir, 
   String $jdk_home_dir                                    = $::orawls::weblogic::jdk_home_dir,
-  String $wls_domains_dir                                 = $::orawls::weblogic::wls_domains_dir,
-  String $wls_apps_dir                                    = $::orawls::weblogic::wls_apps_dir,
+  Optional[String] $wls_domains_dir                       = $::orawls::weblogic::wls_domains_dir,
+  Optional[String] $wls_apps_dir                          = $::orawls::weblogic::wls_apps_dir,
   String $domain_template                                 = 'standard', # adf|adf_restricted|osb|osb_soa_bpm|osb_soa|soa|soa_bpm|bam|wc|wc_wcc_bpm|oud|ohs_standalone
   Boolean $bam_enabled                                    = true,  #only for SOA Suite
   Boolean $b2b_enabled                                    = false, #only for SOA Suite 12.1.3 with b2b
@@ -18,7 +18,7 @@ define orawls::domain (
   Boolean $development_mode                               = true,
   String $adminserver_name                                = 'AdminServer',
   String $adminserver_machine_name                        = 'LocalMachine',
-  Optional[String] $adminserver_address                   = undef,
+  Optional[String] $adminserver_address                   = 'localhost',
   Integer $adminserver_port                               = 7001,
   Optional[Integer] $adminserver_ssl_port                 = undef,
   Boolean $adminserver_listen_on_all_interfaces           = false,
@@ -54,7 +54,7 @@ define orawls::domain (
   Boolean $create_rcu                                     = true,
   Optional[String] $ohs_standalone_listen_address         = undef,
   Optional[Integer] $ohs_standalone_listen_port           = undef,
-  Optional[Boolean] $ohs_standalone_ssl_listen_port       = undef,
+  Optional[Integer] $ohs_standalone_ssl_listen_port       = undef,
   String $wls_domains_file                                = '/etc/wls_domains.yaml',
   String $puppet_os_user                                  = 'root',
   Boolean $create_default_coherence_cluster               = true,
