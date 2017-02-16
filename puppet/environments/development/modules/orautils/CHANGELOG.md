@@ -1,5 +1,8 @@
 # Changes
 
+## 0.5.3
+- support for weblogic 12.2.1
+
 ## 0.5.2
 - SUSE nodemanager service fix
 - updated BEGIN INIT INFO in nodemanager service

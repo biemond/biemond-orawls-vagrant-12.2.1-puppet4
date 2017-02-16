@@ -46,28 +46,19 @@ If you need support, checkout the [wls_install](https://www.enterprisemodules.co
 ## Complete vagrant examples
 
 - Docker with WebLogic 12.1.3 Cluster [docker-weblogic-puppet](https://github.com/biemond/docker-weblogic-puppet)
-- WebLogic 12.2.1.1 MT multi tenancy / Puppet 4 Reference implementation, the vagrant test case for full working WebLogic 12.2.1 cluster example [biemond-orawls-vagrant-12.2.1-puppet4](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-puppet4)
-- WebLogic 12.2.1.1 infra (JRF + JRF restricted), the vagrant test case for full working WebLogic 12.2.1 infra cluster example with WebTier (Oracle HTTP Server) [biemond-orawls-vagrant-12.2.1-infra-puppet4](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-infra-puppet4)
-- WebLogic 12.2.1.1 infra (JRF + JRF restricted), the vagrant test case for full working WebLogic 12.2.1 infra SOA Suite/BAM/OSB cluster example [biemond-orawls-vagrant-12.2.1-infra-soa](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-infra-soa)
+- WebLogic 11g Reference implementation, the vagrant test case for full working WebLogic 10.3.6 cluster example [biemond-orawls-vagrant-puppet4](https://github.com/biemond/biemond-orawls-vagrant-puppet4)
+- WebLogic 12.2.1.2 MT multi tenancy / Puppet 4 Reference implementation, the vagrant test case for full working WebLogic 12.2.1 cluster example [biemond-orawls-vagrant-12.2.1-puppet4](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-puppet4)
+- WebLogic 12.2.1.2 infra (JRF + JRF restricted), the vagrant test case for full working WebLogic 12.2.1 infra cluster example with WebTier (Oracle HTTP Server) [biemond-orawls-vagrant-12.2.1-infra-puppet4](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-infra-puppet4)
+- WebLogic 12.2.1.2 infra (JRF + JRF restricted), the vagrant test case for full working WebLogic 12.2.1 infra SOA Suite/BAM/OSB cluster example [biemond-orawls-vagrant-12.2.1-infra-soa-puppet](https://github.com/biemond/biemond-orawls-vagrant-12.2.1-infra-soa-puppet4)
 - WebLogic OHS webtier standalone, the vagrant test case for full working Webtier 12.1.2 and 12.2.1 [biemond-orawls-vagrant-ohs-puppet4](https://github.com/biemond/biemond-orawls-vagrant-ohs-puppet4)
-- WebLogic 12.1.3 / Puppet 4.2.1 Reference implementation, the vagrant test case for full working WebLogic 12.1.3 cluster example [biemond-orawls-vagrant-12.1.3](https://github.com/biemond/biemond-orawls-vagrant-12.1.3)
-- WebLogic 12.1.3 infra (JRF), the vagrant test case for full working WebLogic 12.1.3 infra cluster example with WebTier (Oracle HTTP Server) [biemond-orawls-vagrant-12.1.3-infra](https://github.com/biemond/biemond-orawls-vagrant-12.1.3-infra)
-- WebLogic 12.1.3 infra with OSB, the vagrant test case for full working WebLogic 12.1.3 infra OSB cluster example [biemond-orawls-vagrant-12.1.3-infra-osb](https://github.com/biemond/biemond-orawls-vagrant-12.1.3-infra-osb)
-- WebLogic 12.1.3 infra with OSB & SOA,ESS,BAM, the vagrant test case for full working WebLogic 12.1.3 infra OSB SOA Cluster example [biemond-orawls-vagrant-12.1.3-infra-soa](https://github.com/biemond/biemond-orawls-vagrant-12.1.3-infra-soa)
-- WebLogic 12.1.2 Reference implementation, the vagrant test case for full working WebLogic 12.1.2 cluster example [biemond-orawls-vagrant-12.1.2](https://github.com/biemond/biemond-orawls-vagrant-12.1.2)
-- WebLogic 12.1.2 infra (JRF) with WebTier, the vagrant test case for full working WebLogic 12.1.2 infra cluster example with WebTier (Oracle HTTP Server) [biemond-orawls-vagrant-12.1.2-infra](https://github.com/biemond/biemond-orawls-vagrant-12.1.2-infra)
-- Reference Solaris implementation, the vagrant test case for full working WebLogic 12.1.3 cluster example [biemond-orawls-vagrant-solaris](https://github.com/biemond/biemond-orawls-vagrant-solaris)
 - Reference OIM / OAM with WebTier, Webgate & Oracle Unified Directory, the vagrant test case for Oracle Identity Manager & Oracle Access Manager 11.1.2.3 example [biemond-orawls-vagrant-oim_oam](https://github.com/biemond/biemond-orawls-vagrant-oim_oam)
 - Reference OIM / OAM Cluster, the vagrant test case for Oracle Identity Manager & Oracle Access Manager 11.1.2.3 cluster example [biemond-orawls-vagrant-oim_oam_cluster](https://github.com/biemond/biemond-orawls-vagrant-oim_oam_cluster)
-- WebLogic 11g Reference implementation, the vagrant test case for full working WebLogic 10.3.6 cluster example [biemond-orawls-vagrant](https://github.com/biemond/biemond-orawls-vagrant)
-- Reference Oracle SOA Suite, the vagrant test case for full working WebLogic 10.3.6 SOA Suite + OSB cluster example [biemond-orawls-vagrant-solaris-soa](https://github.com/biemond/biemond-orawls-vagrant-solaris-soa)
-- Example of Opensource Puppet 3.4.3 Puppet master configuration in a vagrant box [vagrant-puppetmaster](https://github.com/biemond/vagrant-puppetmaster)
 - Oracle Forms, Reports 11.1.1.7 & 11.1.2 Reference implementation, the vagrant test case [biemond-orawls-vagrant-11g-forms](https://github.com/biemond/biemond-orawls-vagrant-11g-forms)
 
 
 ## Orawls WebLogic Features
 
-- [Installs WebLogic](#weblogic), version 10g,11g,12c( 12.1.1, 12.1.2, 12.1.3, 12.2.1, 12.2.1.1 + its FMW infrastructure editions )
+- [Installs WebLogic](#weblogic), version 10g, 11g, 12c ( 12.1.1, 12.1.2, 12.1.3, 12.2.1, 12.2.1.1 + FMW infrastructure editions )
 - [Apply a BSU patch](#bsu) on a Middleware home ( < 12.1.2 )
 - [Apply a OPatch](#opatch) on a Middleware home ( >= 12.1.2 ) or a Oracle product home
 - [Create a WebLogic domain](#domain)
@@ -93,7 +84,7 @@ If you need support, checkout the [wls_install](https://www.enterprisemodules.co
 - [OIM IDM](#oimconfig) / OAM 11.1.2.3 configurations with Oracle OHS OAM WebGate, Also it has Cluster support for OIM OAM
 - [OUD](#instance) OUD Oracle Unified Directory install, WebLogic domain, instances creation & [OUD control](#oud_control)
 - [Forms/Reports](#forms) Oracle Forms & Reports 11.1.1.7, 11.1.2 or 12.2.1
-- [WC, WCC](#Webcenter) Webcenter portal, content 11g or 12.2.1
+- [WC, WCC, WCS](#Webcenter) Webcenter portal, content, sites 11g or 12.2.1
 - [Change FMW log](#fmwlogdir) location of a managed server
 - [Resource Adapter](#resourceadapter) plan and entries for AQ, DB, MQ, FTP, File and JMS
 
@@ -539,6 +530,9 @@ __orawls::weblogic_type__ same as weblogic manifest/class but now as define whic
 ### opatch
 __orawls::opatch__ apply an OPatch on a Middleware home or a Oracle product home
 
+Most general parameters are derived from weblogic.pp, you don't need to specify them again
+
+
     orawls::opatch {'16175470':
       ensure                  => "present",
       oracle_product_home_dir => "/opt/oracle/middleware12c",
@@ -566,6 +560,10 @@ common.yaml
 ### bsu
 __orawls::bsu__ apply or remove a WebLogic BSU Patch ( ensure = present or absent )
 
+
+Most general parameters are derived from weblogic.pp, you don't need to specify them again
+
+
     orawls::bsu {'BYJ1':
       ensure                  => "present",
       middleware_home_dir     => "/opt/oracle/middleware11gR1",
@@ -579,19 +577,6 @@ __orawls::bsu__ apply or remove a WebLogic BSU Patch ( ensure = present or absen
       source                  => "/vagrant",
       log_output              => false,
     }
-
-
-or when you set the defaults hiera variables
-
-    orawls::bsu {'BYJ1':
-      ensure                  => "present",
-      patch_id                => "BYJ1",
-      patch_file              => "p17071663_1036_Generic.zip",
-      log_output              => false,
-    }
-
-
-Same configuration but then with Hiera ( need to have puppet > 3.0 )
 
 
     $default_params = {}
@@ -629,12 +614,11 @@ or when you set the defaults hiera variables
 
 
 ### fmw
-__orawls::fmw__ installs FMW software (add-on) to a middleware home like OSB,SOA Suite, WebTier (HTTP Server), Oracle Identity Management, Web Center + Content
+__orawls::fmw__ installs FMW software (add-on) to a middleware home like OSB,SOA Suite, WebTier (HTTP Server), Oracle Identity Management, Web Center, Content + Sites
 
-    Enum['adf','soa','soaqs','osb','wcc','wc','oim','oam','web','webgate','oud','mft','b2b','forms'] fmw_product
+    Enum['adf','soa','soaqs','osb','wcc','wc','wcs','oim','oam','web','webgate','oud','mft','b2b','forms'] fmw_product
 
-
-Same configuration but then with Hiera ( need to have puppet > 3.0 )
+Most general parameters are derived from weblogic.pp, you don't need to specify them again
 
 	logoutput:                &logoutput                true
 
@@ -655,6 +639,39 @@ Same configuration but then with Hiera ( need to have puppet > 3.0 )
     $default_params = {}
     $fmw_installations = hiera('fmw_installations', {})
     create_resources('orawls::fmw',$fmw_installations, $default_params)
+
+	# FMW installation on top of WebLogic 12.2.1
+	fmw_installations:
+	  'webtier1221':
+	    fmw_product:               "web"
+	    fmw_file1:                 "fmw_12.2.1.2.0_ohs_linux64_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	  'soa1221':
+	    fmw_product:               "soa"
+	    fmw_file1:                 "fmw_12.2.1.2.0_soa_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	    bpm:                       true
+	  'osb1221':
+	    fmw_product:               "osb"
+	    fmw_file1:                 "fmw_12.2.1.2.0_osb_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	  'forms1221':
+	    fmw_product:               "forms"
+	    fmw_file1:                 "fmw_12.2.1.2.0_fr_linux64_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	  'wcc1221':
+	    fmw_product:               "wcc"
+	    fmw_file1:                 "fmw_12.2.1.2.0_wccontent_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	  'wc1221':
+	    fmw_product:               "wc"
+	    fmw_file1:                 "fmw_12.2.1.2.0_wcportal_Disk1_1of1.zip"
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
+	  'wcs1221':
+	    fmw_product:               "wcs"
+	    fmw_file1:                 "fmw_12.2.1.2.0_wcsites_Disk1_1of1.zip"
+	    wcs_mode:                  'sites' # Enum['sites','examples','satellite']
+	    oracle_base_home_dir:      *wls_oracle_base_home_dir
 
     # OHS standalone
 	fmw_installations:
@@ -680,11 +697,11 @@ Same configuration but then with Hiera ( need to have puppet > 3.0 )
 ### domain
 __orawls::domain__ creates WebLogic domain like a standard | OSB or SOA Suite | ADF | WebCenter | OIM or OAM or OUD
 
+
+Most general parameters are derived from weblogic.pp, you don't need to specify them again
+
 optional override the default server arguments in the domain.py template with java_arguments parameter
 
- 
-
-Same configuration but then with Hiera ( need to have puppet > 3.0 )
 
 	wls_os_user:              &wls_os_user              "oracle"
 	wls_weblogic_home_dir:    &wls_weblogic_home_dir    "/opt/oracle/middleware12c/wlserver"
@@ -1162,95 +1179,86 @@ when you set the defaults hiera variables
     $resource_adapter_instances = hiera('resource_adapter_instances', {})
     create_resources('orawls::resourceadapter',$resource_adapter_instances, $default_params)
 
-vagrantcentos64.example.com.yaml
-or when you set the defaults hiera variables
+	resource_adapter_instances:
+	  'JmsAdapter_hr':
+	    adapter_name:              'JmsAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/JmsAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_JMS.xml'
+	    adapter_entry:             'eis/JMS/cf'
+	    adapter_entry_property:    'ConnectionFactoryLocation'
+	    adapter_entry_value:       'jms/cf'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'JmsAdapter_hr2':
+	    adapter_name:              'JmsAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/JmsAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_JMS.xml'
+	    adapter_entry:             'eis/JMS/cf2'
+	    adapter_entry_property:    'ConnectionFactoryLocation'
+	    adapter_entry_value:       'jms/cf2'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'AqAdapter_hr':
+	    adapter_name:              'AqAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/AqAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_AQ.xml'
+	    adapter_entry:             'eis/AQ/hr'
+	    adapter_entry_property:    'XADataSourceName'
+	    adapter_entry_value:       'jdbc/hrDS'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'DbAdapter_hr':
+	    adapter_name:              'DbAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/DbAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_DB.xml'
+	    adapter_entry:             'eis/DB/hr'
+	    adapter_entry_property:    'XADataSourceName'
+	    adapter_entry_value:       'jdbc/hrDS'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'DbAdapter_hr2':
+	    adapter_name:              'DbAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/DbAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_DB.xml'
+	    adapter_entry:             'eis/DB/hr2'
+	    adapter_entry_property:    'xADataSourceName'
+	    adapter_entry_value:       'jdbc/hrDS2'
+	    log_output:                *logoutput
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'FTPAdapter_hr':
+	    adapter_name:              'FtpAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/FtpAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_FTP.xml'
+	    adapter_entry:             'eis/FTP/xx'
+	    adapter_entry_property:    'FtpAbsolutePathBegin;FtpPathSeparator;Host;ListParserKey;Password;ServerType;UseFtps;Username;UseSftp'
+	    adapter_entry_value:       '/BDDC;/;l2-ibrfongen02.nl.rsg;UNIX;;unix;false;kim;false'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
+	  'FileAdapter_hr':
+	    adapter_name:              'FileAdapter'
+	    adapter_path:              "/opt/oracle/middleware12c/soa/soa/connectors/FileAdapter.rar"
+	    adapter_plan_dir:          "/opt/oracle/middleware12c"
+	    adapter_plan:              'Plan_FILE.xml'
+	    adapter_entry:             'eis/FileAdapterXX'
+	    adapter_entry_property:    'ControlDir;IsTransacted'
+	    adapter_entry_value:       '/tmp/aaa;false'
+	    domain_name:                *domain_name
+	    weblogic_password:          *domain_wls_password                 
+	    adminserver_address:        *domain_adminserver_address
 
-    resource_adapter_instances:
-      'JmsAdapter_hr':
-        adapter_name:              'JmsAdapter'
-        adapter_path:              "/opt/oracle/middleware11g/Oracle_SOA1/soa/connectors/JmsAdapter.rar"
-        adapter_plan_dir:          "/opt/oracle/wlsdomains"
-        adapter_plan:              'Plan_JMS.xml'
-        adapter_entry:             'eis/JMS/cf'
-        adapter_entry_property:    'ConnectionFactoryLocation'
-        adapter_entry_value:       'jms/cf'
-      'AqAdapter_hr':
-        adapter_name:              'AqAdapter'
-        adapter_path:              "/opt/oracle/middleware11g/Oracle_SOA1/soa/connectors/AqAdapter.rar"
-        adapter_plan_dir:          "/opt/oracle/wlsdomains"
-        adapter_plan:              'Plan_AQ.xml'
-        adapter_entry:             'eis/AQ/hr'
-        adapter_entry_property:    'xADataSourceName'
-        adapter_entry_value:       'jdbc/hrDS'
-      'DbAdapter_hr':
-        adapter_name:              'DbAdapter'
-        adapter_path:              "/opt/oracle/middleware11g/Oracle_SOA1/soa/connectors/DbAdapter.rar"
-        adapter_plan_dir:          "/opt/oracle/wlsdomains"
-        adapter_plan:              'Plan_DB.xml'
-        adapter_entry:             'eis/DB/hr'
-        adapter_entry_property:    'xADataSourceName'
-        adapter_entry_value:       'jdbc/hrDS'
-      'FTPAdapter_hr':
-        adapter_name:              'FtpAdapter'
-        adapter_path:              "/opt/oracle/middleware11g/Oracle_SOA1/soa/connectors/FtpAdapter.rar"
-        adapter_plan_dir:          "/opt/oracle/wlsdomains"
-        adapter_plan:              'Plan_FTP.xml'
-        adapter_entry:             'eis/FTP/xx'
-        adapter_entry_property:    'FtpAbsolutePathBegin;FtpPathSeparator;Host;ListParserKey;Password;ServerType;UseFtps;Username;UseSftp'
-        adapter_entry_value:       '/BDDC;/;l2-ibrfongen02.nl.rsg;UNIX;;unix;false;kim;false'
-      'FileAdapter_hr':
-        adapter_name:              'FileAdapter'
-        adapter_path:              "/opt/oracle/middleware11g/Oracle_SOA1/soa/connectors/FileAdapter.rar"
-        adapter_plan_dir:          "/opt/oracle/wlsdomains"
-        adapter_plan:              'Plan_FILE.xml'
-        adapter_entry:             'eis/FileAdapterXX'
-        adapter_entry_property:    'ControlDir;IsTransacted'
-        adapter_entry_value:       '/tmp/aaa;false'
-
-
-or for 12.1.3 ( 12c )
-
-    resource_adapter_instances:
-      'JmsAdapter_hr':
-        adapter_name:              'JmsAdapter'
-        adapter_path:              "/oracle/product/12.1/middleware/soa/soa/connectors/JmsAdapter.rar"
-        adapter_plan_dir:          "/oracle/product/12.1/middleware"
-        adapter_plan:              'Plan_JMS.xml'
-        adapter_entry:             'eis/JMS/cf'
-        adapter_entry_property:    'ConnectionFactoryLocation'
-        adapter_entry_value:       'jms/cf'
-      'AqAdapter_hr':
-        adapter_name:              'AqAdapter'
-        adapter_path:              "/oracle/product/12.1/middleware/soa/soa/connectors/AqAdapter.rar"
-        adapter_plan_dir:          "/oracle/product/12.1/middleware"
-        adapter_plan:              'Plan_AQ.xml'
-        adapter_entry:             'eis/AQ/hr'
-        adapter_entry_property:    'XADataSourceName'
-        adapter_entry_value:       'jdbc/hrDS'
-      'DbAdapter_hr':
-        adapter_name:              'DbAdapter'
-        adapter_path:              "/oracle/product/12.1/middleware/soa/soa/connectors/DbAdapter.rar"
-        adapter_plan_dir:          "/oracle/product/12.1/middleware"
-        adapter_plan:              'Plan_DB.xml'
-        adapter_entry:             'eis/DB/hr'
-        adapter_entry_property:    'XADataSourceName'
-        adapter_entry_value:       'jdbc/hrDS'
-      'FTPAdapter_hr':
-        adapter_name:              'FtpAdapter'
-        adapter_path:              "/oracle/product/12.1/middleware/soa/soa/connectors/FtpAdapter.rar"
-        adapter_plan_dir:          "/oracle/product/12.1/middleware"
-        adapter_plan:              'Plan_FTP.xml'
-        adapter_entry:             'eis/FTP/xx'
-        adapter_entry_property:    'FtpAbsolutePathBegin;FtpPathSeparator;Host;ListParserKey;Password;ServerType;UseFtps;Username;UseSftp'
-        adapter_entry_value:       '/BDDC;/;l2-ibrfongen02.nl.rsg;UNIX;;unix;false;kim;false'
-      'FileAdapter_hr':
-        adapter_name:              'FileAdapter'
-        adapter_path:              "/oracle/product/12.1/middleware/soa/soa/connectors/FileAdapter.rar"
-        adapter_plan_dir:          "/oracle/product/12.1/middleware"
-        adapter_plan:              'Plan_FILE.xml'
-        adapter_entry:             'eis/FileAdapterXX'
-        adapter_entry_property:    'ControlDir;IsTransacted'
-        adapter_entry_value:       '/tmp/aaa;false'
 
 
 ### fmwcluster
@@ -1263,8 +1271,6 @@ for OSB 11g or SOA Suite 11g managed servers make sure to also set the coherence
     $default_params = {}
     $fmw_cluster_instances = hiera('fmw_cluster_instances', $default_params)
     create_resources('orawls::utils::fmwcluster',$fmw_cluster_instances, $default_params)
-
-hiera configuration
 
     # FMW 11g cluster
     fmw_cluster_instances:
@@ -1279,6 +1285,9 @@ hiera configuration
          soa_enabled:          true
          osb_enabled:          true
          repository_prefix:    "DEV"
+	     weblogic_user:        *wls_weblogic_user
+	     weblogic_password:    *domain_wls_password
+	     adminserver_address:  *domain_adminserver_address
 
     # FMW 12.1.3 cluster
     fmw_cluster_instances:
@@ -1296,6 +1305,26 @@ hiera configuration
         b2b_enabled:          true
         ess_enabled:          true
         repository_prefix:    "DEV"
+	    weblogic_user:        *wls_weblogic_user
+	    weblogic_password:    *domain_wls_password
+	    adminserver_address:  *domain_adminserver_address
+
+	fmw_cluster_instances:
+	  'soaCluster':
+	    domain_name:          "soa_domain"
+	    soa_cluster_name:     "SoaCluster"
+	    bam_cluster_name:     "BamCluster"
+	    osb_cluster_name:     "OsbCluster"
+	    bpm_enabled:          true
+	    bam_enabled:          true
+	    soa_enabled:          true
+	    osb_enabled:          true
+	    b2b_enabled:          true
+	    ess_enabled:          true
+	    repository_prefix:    "DEV6"
+	    weblogic_user:        *wls_weblogic_user
+	    weblogic_password:    *domain_wls_password
+	    adminserver_address:  *domain_adminserver_address
 
     # OIM 11.1.2.3 cluster
     fmw_cluster_instances:

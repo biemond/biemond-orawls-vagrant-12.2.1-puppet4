@@ -48,11 +48,13 @@ define jdk7::install7 (
 
   $jdk_file = "jdk-${version}-${install_version}-${type}${install_extension}"
 
-  exec { "create ${download_dir} directory":
-    command => "mkdir -p ${download_dir}",
-    unless  => "test -d ${download_dir}",
-    path    => $path,
-    user    => $user,
+  if !defined(Exec["create ${download_dir} directory"]) {
+    exec { "create ${download_dir} directory":
+        command => "mkdir -p ${download_dir}",
+        unless  => "test -d ${download_dir}",
+        path    => $path,
+        user    => $user,
+    }
   }
 
   # check install folder

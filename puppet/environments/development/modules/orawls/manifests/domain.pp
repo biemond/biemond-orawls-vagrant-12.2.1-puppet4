@@ -5,7 +5,7 @@
 define orawls::domain (
   Integer $version                                        = $::orawls::weblogic::version,
   String $weblogic_home_dir                               = $::orawls::weblogic::weblogic_home_dir,
-  String $middleware_home_dir                             = $::orawls::weblogic::middleware_home_dir, 
+  String $middleware_home_dir                             = $::orawls::weblogic::middleware_home_dir,
   String $jdk_home_dir                                    = $::orawls::weblogic::jdk_home_dir,
   Optional[String] $wls_domains_dir                       = $::orawls::weblogic::wls_domains_dir,
   Optional[String] $wls_apps_dir                          = $::orawls::weblogic::wls_apps_dir,
@@ -106,6 +106,9 @@ define orawls::domain (
       $templateBPM          = "${middleware_home_dir}/Oracle_SOA1/common/templates/applications/oracle.bpm_template_11.1.1.jar"
       $templateBAM          = "${middleware_home_dir}/Oracle_SOA1/common/templates/applications/oracle.bam_template_11.1.1.jar"
 
+      $templateOHS          = "dummy"
+      $templateCoherence    = "dummy"
+
     } elsif $version == 1112 {
       $template          = "${weblogic_home_dir}/common/templates/domains/wls.jar"
       $templateWS        = "${weblogic_home_dir}/common/templates/applications/wls_webservice.jar"
@@ -125,6 +128,9 @@ define orawls::domain (
       $templateSOA          = "${middleware_home_dir}/Oracle_SOA1/common/templates/applications/oracle.soa_template_11.1.1.jar"
       $templateBPM          = "${middleware_home_dir}/Oracle_SOA1/common/templates/applications/oracle.bpm_template_11.1.1.jar"
       $templateBAM          = "${middleware_home_dir}/Oracle_SOA1/common/templates/applications/oracle.bam_template_11.1.1.jar"
+
+      $templateOHS          = "dummy"
+      $templateCoherence    = "dummy"
 
     } elsif $version == 1212 {
       $template          = "${weblogic_home_dir}/common/templates/wls/wls.jar"
@@ -430,7 +436,7 @@ define orawls::domain (
       file { "${download_dir}/utils.py":
         ensure  => present,
         path    => "${download_dir}/utils.py",
-        source => 'puppet:///modules/orawls/wlst/utils.py',
+        source  => 'puppet:///modules/orawls/wlst/utils.py',
         replace => true,
         backup  => false,
         mode    => lookup('orawls::permissions'),
@@ -458,44 +464,44 @@ define orawls::domain (
     file { "domain.py ${domain_name} ${title}":
       ensure  => present,
       path    => "${download_dir}/domain_${domain_name}.py",
-      content => epp($templateFile, 
-                    { 'domain_name' => $domain_name,
-                     'domain_dir' => $domain_dir,
-                     'version' => $version, 
-                     'templateOHS' => $templateOHS,
-                     'template' => $template,
-                     'templateCoherence' => $templateCoherence,
-                     'nodemanager_username' => $nodemanager_username,
-                     'nodemanager_password' => $nodemanager_password,
-                     'adminserver_address' => $adminserver_address,
-                     'adminserver_port' => $adminserver_port,
-                     'ohs_standalone_listen_address' => $ohs_standalone_listen_address,
-                     'ohs_standalone_listen_port' => $ohs_standalone_listen_port,
-                     'ohs_standalone_ssl_listen_port' => $ohs_standalone_ssl_listen_port,
-                     'download_dir' => $download_dir, 
-                     'weblogic_home_dir' => $weblogic_home_dir,
-                     'apps_dir' => $apps_dir,
-                     'jsse_enabled' => $jsse_enabled,
-                     'development_mode' => $development_mode,
-                     'adminserver_name' => $adminserver_name,
-                     'weblogic_user' => $weblogic_user,
-                     'weblogic_password' => $weblogic_password,
-                     'jdk_home_dir' => $jdk_home_dir,
-                     'domain_password' => $domain_password,
-                     'adminserver_listen_on_all_interfaces' => $adminserver_listen_on_all_interfaces,   
-                     'nodemanager_secure_listener' => $nodemanager_secure_listener, 
-                     'create_default_coherence_cluster' => $create_default_coherence_cluster,
-                     'java_arguments' => $java_arguments, 
-                     'admin_nodemanager_log_dir' => $admin_nodemanager_log_dir,
-                     'adminserver_machine_name' => $adminserver_machine_name,
-                     'adminserver_ssl_port' => $adminserver_ssl_port,
-                     'custom_identity' => $custom_identity,
-                     'custom_identity_keystore_filename' => $custom_identity_keystore_filename,
-                     'custom_identity_keystore_passphrase' => $custom_identity_keystore_passphrase,
-                     'trust_keystore_file' => $trust_keystore_file, 
-                     'trust_keystore_passphrase' => $trust_keystore_passphrase,
-                     'custom_identity_alias' => $custom_identity_alias,
-                     'custom_identity_privatekey_passphrase' => $custom_identity_privatekey_passphrase }),
+      content => epp($templateFile, {
+                    'domain_name'                           => $domain_name,
+                    'domain_dir'                            => $domain_dir,
+                    'version'                               => $version,
+                    'templateOHS'                           => $templateOHS,
+                    'template'                              => $template,
+                    'templateCoherence'                     => $templateCoherence,
+                    'nodemanager_username'                  => $nodemanager_username,
+                    'nodemanager_password'                  => $nodemanager_password,
+                    'adminserver_address'                   => $adminserver_address,
+                    'adminserver_port'                      => $adminserver_port,
+                    'ohs_standalone_listen_address'         => $ohs_standalone_listen_address,
+                    'ohs_standalone_listen_port'            => $ohs_standalone_listen_port,
+                    'ohs_standalone_ssl_listen_port'        => $ohs_standalone_ssl_listen_port,
+                    'download_dir'                          => $download_dir,
+                    'weblogic_home_dir'                     => $weblogic_home_dir,
+                    'apps_dir'                              => $apps_dir,
+                    'jsse_enabled'                          => $jsse_enabled,
+                    'development_mode'                      => $development_mode,
+                    'adminserver_name'                      => $adminserver_name,
+                    'weblogic_user'                         => $weblogic_user,
+                    'weblogic_password'                     => $weblogic_password,
+                    'jdk_home_dir'                          => $jdk_home_dir,
+                    'domain_password'                       => $domain_password,
+                    'adminserver_listen_on_all_interfaces'  => $adminserver_listen_on_all_interfaces,
+                    'nodemanager_secure_listener'           => $nodemanager_secure_listener,
+                    'create_default_coherence_cluster'      => $create_default_coherence_cluster,
+                    'java_arguments'                        => $java_arguments,
+                    'admin_nodemanager_log_dir'             => $admin_nodemanager_log_dir,
+                    'adminserver_machine_name'              => $adminserver_machine_name,
+                    'adminserver_ssl_port'                  => $adminserver_ssl_port,
+                    'custom_identity'                       => $custom_identity,
+                    'custom_identity_keystore_filename'     => $custom_identity_keystore_filename,
+                    'custom_identity_keystore_passphrase'   => $custom_identity_keystore_passphrase,
+                    'trust_keystore_file'                   => $trust_keystore_file,
+                    'trust_keystore_passphrase'             => $trust_keystore_passphrase,
+                    'custom_identity_alias'                 => $custom_identity_alias,
+                    'custom_identity_privatekey_passphrase' => $custom_identity_privatekey_passphrase }),
       replace => true,
       backup  => false,
       mode    => lookup('orawls::permissions'),

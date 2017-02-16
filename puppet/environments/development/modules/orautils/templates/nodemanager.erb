@@ -1,4 +1,5 @@
-<% @version = @version.to_i # in some situations the version comes through as a string. This fixes that. Not quite sure what causes this. -%>
+<% @version = @version.to_i -%>
+<%# In some situations the version comes through as a string. The above to_i fixes that. Not quite sure what causes this. -%>
 #!/bin/sh
 #
 # nodemgr Oracle Weblogic NodeManager service
@@ -54,7 +55,7 @@ is_nodemgr_running() {
     local nodemgr_cnt=`ps -ef        | \
         grep -i 'java '                  | \
         grep -i ' weblogic.NodeManager '  | \
-<% if @version == 1212 or @version == 1213 -%>
+<% if @version == 1212 or @version == 1213 or @version == 1221 -%>
         grep -i 'Dweblogic.RootDirectory=<%= @domain_path -%>' | \
 <% end -%>
         grep -v grep                  | \
@@ -68,7 +69,7 @@ get_nodemgr_pid() {
         nodemgr_pid=`ps -ef             | \
             grep -i 'java '                 | \
             grep -i ' weblogic.NodeManager ' | \
-<% if @version == 1212 or @version == 1213 -%>
+<% if @version == 1212 or @version == 1213 or @version == 1221 -%>
             grep -i 'Dweblogic.RootDirectory=<%= @domain_path -%>' | \
 <% end -%>
             grep -v grep                 | \

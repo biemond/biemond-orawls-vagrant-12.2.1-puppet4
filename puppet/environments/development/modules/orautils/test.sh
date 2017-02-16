@@ -5,8 +5,8 @@ source ~/.rvm/scripts/rvm
 
 rvm --version
 
-rvm install ruby-2.0.0
-rvm use ruby-2.0.0
+rvm install ruby-2.3.1
+rvm use ruby-2.3.1
 
 set -e
 

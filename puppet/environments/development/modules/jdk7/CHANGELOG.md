@@ -1,7 +1,16 @@
 # History
 
+## 0.5.4
+- Added java_sdk alternative
+
+## 0.5.3
+- Suse urandom fix and support for RHEL 5 family
+- Support for multiple JDK installations
+- add jar to alternatives
+
 ## 0.5.2
 - update /usr/java/latest link to the latest jdk
+- cryptography extension file fix
 
 ## 0.5.1
 - option to skip the creation of default java links and to set java alternatives/priorities

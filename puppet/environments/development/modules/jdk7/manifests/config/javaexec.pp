@@ -109,35 +109,39 @@ define jdk7::config::javaexec (
   }
 
   if ( $default_links ){
-    # java link to latest
-    file { '/usr/java/latest':
-      ensure  => link,
-      target  => $java_dir,
-      require => Exec["extract java ${full_version}"],
-      owner   => $user,
-      group   => $group,
-      mode    => '0755',
-    }
+    if(!defined(File['/usr/java/latest'])) {
+        # java link to latest
+        file { '/usr/java/latest':
+          ensure  => link,
+          target  => $java_dir,
+          require => Exec["extract java ${full_version}"],
+          owner   => $user,
+          group   => $group,
+          mode    => '0755',
+        }
 
-    # java link to default
-    file { '/usr/java/default':
-      ensure  => link,
-      target  => '/usr/java/latest',
-      require => File['/usr/java/latest'],
-      owner   => $user,
-      group   => $group,
-      mode    => '0755',
+        # java link to default
+        file { '/usr/java/default':
+          ensure  => link,
+          target  => '/usr/java/latest',
+          require => File['/usr/java/latest'],
+          owner   => $user,
+          group   => $group,
+          mode    => '0755',
+        }
     }
   }
 
-  $alternatives = [ 'java', 'javac', 'keytool']
+  $alternatives = [ 'jar', 'java', 'javac', 'keytool', 'java_sdk' ]
   if ( $install_alternatives ){
-    jdk7::config::alternatives{ $alternatives:
-      java_home_dir => $java_homes_dir,
-      full_version  => $full_version,
-      priority      => $alternatives_priority,
-      user          => $user,
-      group         => $group,
+    if(!defined(Jdk7::Config::Alternatives['java'])) {
+        jdk7::config::alternatives{ $alternatives:
+          java_home_dir => $java_homes_dir,
+          full_version  => $full_version,
+          priority      => $alternatives_priority,
+          user          => $user,
+          group         => $group,
+        }
     }
   }
 }

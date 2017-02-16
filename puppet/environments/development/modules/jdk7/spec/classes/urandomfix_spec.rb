@@ -26,7 +26,8 @@ describe 'jdk7::urandomfix' , :type => :class do
   describe "CentOS" do
     let(:facts) {{ :operatingsystem => 'CentOS' ,
                    :kernel          => 'Linux',
-                   :osfamily        => 'RedHat' }}
+                   :osfamily        => 'RedHat',
+                   :operatingsystemmajrelease => '6' }}
 
     describe "on operatingsystem CentOS" do
       it do
@@ -52,24 +53,25 @@ describe 'jdk7::urandomfix' , :type => :class do
   describe "RedHat" do
     let(:facts) {{ :operatingsystem => 'RedHat' ,
                    :kernel          => 'Linux',
-                   :osfamily        => 'RedHat' }}
+                   :osfamily        => 'RedHat',
+                   :operatingsystemmajrelease => '7' }}
 
     describe "on operatingsystem RedHat" do
       it do
-        should contain_exec("set urandom /etc/sysconfig/rngd").with({
+        should contain_exec('set urandom /lib/systemd/system/rngd.service').with({
             'user'  => 'root',
           })
       end
       it do
+        should contain_exec('systemctl-daemon-reload').with({
+            'command' => 'systemctl --system daemon-reload',
+          })
+      end
+
+      it do
         should contain_service("rngd").with({
             'ensure'     => 'running',
             'enable'     => true,
-          })
-      end
-      it do
-        should contain_exec("chkconfig rngd").with({
-            'user'    => 'root',
-            'command' => "chkconfig --add rngd",
           })
       end
     end
@@ -78,7 +80,8 @@ describe 'jdk7::urandomfix' , :type => :class do
   describe "OracleLinux" do
     let(:facts) {{ :operatingsystem => 'OracleLinux' ,
                    :kernel          => 'Linux',
-                   :osfamily        => 'RedHat' }}
+                   :osfamily        => 'RedHat',
+                   :operatingsystemmajrelease => '6' }}
 
     describe "on operatingsystem OracleLinux" do
       it do

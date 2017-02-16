@@ -19,7 +19,7 @@ describe 'jdk7::config::alternatives' , :type => :define do
       it do
         should contain_exec("java alternatives java").with({
             'command' => "alternatives --install /usr/bin/java java /usr/java/jdk1.7.0_51/bin/java 18000",
-            'unless'  => "alternatives --display java | /bin/grep jdk1.7.0_51 | /bin/grep 'priority 18000$'",
+            'unless'  => "alternatives --display java | grep -v best  | /bin/grep -v priority | /bin/grep jdk1.7.0_51",
             'user'    => 'root',
           })
       end
@@ -44,7 +44,7 @@ describe 'jdk7::config::alternatives' , :type => :define do
       it do
         should contain_exec("java alternatives java").with({
             'command' => "update-alternatives --install /usr/bin/java java /usr/java/jdk1.7.0_51/jdk1.7.0_51/bin/java 18000",
-            'unless'  => "update-alternatives --display java | /bin/grep jdk1.7.0_51 | /bin/grep 'priority 18000$'",
+            'unless'  => "update-alternatives --display java | grep -v best  | /bin/grep -v priority | /bin/grep jdk1.7.0_51",
             'user'    => 'root',
           })
       end

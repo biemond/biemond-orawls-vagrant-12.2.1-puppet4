@@ -21,7 +21,7 @@ define orawls::weblogic_type (
   Boolean $force                      = false, # true|false
   String $temp_dir                    = lookup('orawls::tmp_dir'),# /tmp temporary directory for files extractions
   Optional[String] $orainstpath_dir   = lookup('orawls::orainst_dir'),
-) 
+)
 {
 
   if ( $wls_domains_dir != undef) {
@@ -47,13 +47,14 @@ define orawls::weblogic_type (
 
   if ($version == 1036 or $version == 1111 or $version == 1211) {
     $silent_template = 'orawls/weblogic_silent_install.xml.epp'
+    $install_type = 'dummy'
   } elsif ( $version == 1212 or $version == 1213 or $version >= 1221 ) {
 
     #The oracle home location. This can be an existing Oracle Home or a new Oracle Home
     if ( $fmw_infra == true ) {
-      $install_type='Fusion Middleware Infrastructure'
+      $install_type = 'Fusion Middleware Infrastructure'
     } else {
-      $install_type='WebLogic Server'
+      $install_type = 'WebLogic Server'
     }
     if $version >= 1221 {
       $new_version = 1221
@@ -142,10 +143,10 @@ define orawls::weblogic_type (
   # de xml used by the wls installer
   file { "${download_dir}/weblogic_silent_install_${title}.xml":
     ensure  => present,
-    content => epp($silent_template,
-                  {'middleware_home_dir'=> $middleware_home_dir,
-                   'weblogic_home_dir'  => $weblogic_home_dir,
-                   'install_type'       => $install_type }),
+    content => epp($silent_template, {
+                    'middleware_home_dir' => $middleware_home_dir,
+                    'weblogic_home_dir'   => $weblogic_home_dir,
+                    'install_type'        => $install_type }),
     replace => true,
     mode    => lookup('orawls::permissions'),
     owner   => $os_user,
