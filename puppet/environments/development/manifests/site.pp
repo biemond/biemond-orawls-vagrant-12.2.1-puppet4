@@ -12,7 +12,7 @@ node 'admin.example.com' {
   include orawls::weblogic
   include orautils, jdk7::urandomfix
   # include weblogic
-  include bsu
+
   include fmw
   include opatch
   include domains
@@ -199,23 +199,21 @@ class java {
 
 }
 
-
-class bsu{
-  require orawls::weblogic
+class weblogic {
+  require java
   $default_params = {}
-  $bsu_instances = hiera('bsu_instances', {})
-  create_resources('orawls::bsu',$bsu_instances, $default_params)
+  $weblogic_instances = hiera('weblogic_instances', {})
+  create_resources('orawls::weblogic_type',$weblogic_instances, $default_params)
 }
 
 class fmw{
-  require bsu
   $default_params = {}
   $fmw_installations = hiera('fmw_installations', {})
   create_resources('orawls::fmw',$fmw_installations, $default_params)
 }
 
 class opatch{
-  require fmw, bsu, orawls::weblogic
+  require fmw, orawls::weblogic
   $default_params = {}
   $opatch_instances = hiera('opatch_instances', {})
   create_resources('orawls::opatch',$opatch_instances, $default_params)

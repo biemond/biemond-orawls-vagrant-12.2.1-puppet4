@@ -53,6 +53,35 @@ orawls::weblogic::wls_domains_dir:           *wls_domains_dir
 orawls::weblogic::wls_apps_dir:              *wls_apps_dir
 orawls::weblogic::middleware_home_dir:       *wls_middleware_home_dir
 
+
+
+# weblogic_instances:
+#   'home1':
+#     version:                     *wls_version
+#     filename:                    'fmw_12.2.1.2.0_wls.jar'
+#     middleware_home_dir:         *wls_middleware_home_dir
+#     log_output:                  true
+#     jdk_home_dir:                *wls_jdk_home_dir
+#     oracle_base_home_dir:        *wls_oracle_base_home_dir
+#     puppet_download_mnt_point:   '/vagrant'
+#     remote_file:                 true
+#     wls_domains_dir:             *wls_domains_dir
+#     wls_apps_dir:                *wls_apps_dir
+#     require:                     Jdk7::Install7[jdk-8u72-linux-x64]
+#   'home2':
+#     version:                      *wls_version
+#     filename:                     'fmw_12.2.1.2.0_wls.jar'
+#     middleware_home_dir:          '/opt/oracle/middleware12c_2'
+#     log_output:                   true
+#     jdk_home_dir:                 *wls_jdk_home_dir
+#     oracle_base_home_dir:         *wls_oracle_base_home_dir
+#     puppet_download_mnt_point:    '/vagrant'
+#     remote_file:                  true
+#     wls_domains_dir:              *wls_domains_dir
+#     wls_apps_dir:                 *wls_apps_dir
+#     require:                      Jdk7::Install7[jdk-8u72-linux-x64]
+
+
 # fmw_installations:
 
 opatch_instances:
