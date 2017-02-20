@@ -21,6 +21,10 @@ domain_adminserver_address: &domain_adminserver_address "%{hiera('adminserver_ad
 domain_node1_address:       &domain_node1_address       "%{hiera('node1_address')}"
 domain_node2_address:       &domain_node2_address       "%{hiera('node2_address')}"
 
+wls_domains_dir:          &wls_domains_dir          '/opt/oracle/wlsdomains/domains'
+wls_apps_dir:             &wls_apps_dir             '/opt/oracle/wlsdomains/applications'
+
+
 orautils::os_domain:           *domain_name
 orautils::os_domain_path:      "/opt/oracle/wlsdomains/domains/Wls1221"
 orautils::node_mgr_path:       "/opt/oracle/wlsdomains/domains/Wls1221/bin"
