@@ -1,7 +1,49 @@
-# == Define: orawls::utils::fmwcluster
 #
-# transform domain to a soa,osb,bam,ess,oim,oam cluster
-##
+# utils::fmwcluster define
+#
+# transform a domain to a soa, osb, bam, ess, oim, oam cluster
+#
+# @param version used weblogic software like 1036
+# @param ofm_version used FMW software
+# @param wls_domains_dir root directory for all the WebLogic domains
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param domain_name the domain name which to connect to
+# @param adminserver_address the adminserver network name or ip, default = localhost
+# @param adminserver_port the adminserver port number, default = 7001
+# @param weblogic_user the weblogic administrator username
+# @param weblogic_password the weblogic domain password
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param jsse_enabled enable JSSE on the JVM
+# @param custom_trust have your own trustore JKS or using the default
+# @param trust_keystore_file the full path to the trust keystore
+# @param trust_keystore_passphrase the password of the trust keystore
+# @param adminserver_name WebLogic AdminServer name
+# @param nodemanager_port the port number of the used NodeManager
+# @param soa_cluster_name the SOA Suite cluster name
+# @param bam_cluster_name the SOA Suite BAM cluster name
+# @param osb_cluster_name the Service Bus cluster name
+# @param oam_cluster_name the OAM cluster name
+# @param oim_cluster_name the OIM cluster name
+# @param ess_cluster_name the SOA Suite ESS cluster name
+# @param bi_cluster_name the BI Cluster name
+# @param bpm_enabled BPM enabled on SOA SUITE
+# @param bam_enabled BAM enabled on SOA SUITE
+# @param osb_enabled OSB enabled
+# @param soa_enabled SOA SUITE enabled
+# @param oam_enabled OAM enabled
+# @param oim_enabled OIM enabled
+# @param b2b_enabled B2B enabled
+# @param ess_enabled ESS enabled on SOA SUITE
+# @param bi_enabled BI enabled
+# @param repository_prefix the used RCU prefix
+# @param nodemanager_secure_listener use the secure nodemanager port
+# @param retain_file_store
+#
 define orawls::utils::fmwcluster (
   Integer $version                                        = $::orawls::weblogic::version,
   Integer $ofm_version                                    = 1117,   # 1116|1117
@@ -55,7 +97,7 @@ define orawls::utils::fmwcluster (
 
   if ( $soa_enabled ) {
     # check if the soa is already targeted to the cluster on this weblogic domain
-    $soa_found = soa_cluster_configured($domain_dir, $soa_cluster_name)
+    $soa_found = orawls::product_configured($domain_dir, $soa_cluster_name, 'soa')
 
     if $soa_found == undef or $soa_found == true {
       $convert_soa = false
@@ -68,7 +110,7 @@ define orawls::utils::fmwcluster (
 
   if ( $osb_enabled ) {
     # check if the soa is already targeted to the cluster on this weblogic domain
-    $osb_found = osb_cluster_configured($domain_dir, $osb_cluster_name)
+    $osb_found = orawls::product_configured($domain_dir, $osb_cluster_name, 'osb')
 
     if $osb_found == undef or $osb_found == true {
       $convert_osb = false
@@ -81,7 +123,7 @@ define orawls::utils::fmwcluster (
 
   if ( $bam_enabled ) {
     # check if the soa is already targeted to the cluster on this weblogic domain
-    $bam_found = bam_cluster_configured($domain_dir, $bam_cluster_name)
+    $bam_found = orawls::product_configured($domain_dir, $bam_cluster_name, 'bam')
 
     if $bam_found == undef or $bam_found == true {
       $convert_bam = false

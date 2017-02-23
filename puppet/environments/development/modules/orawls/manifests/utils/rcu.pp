@@ -1,5 +1,23 @@
-# == Class: orawls::utils::rcu
-#    rcu for 12c
+#
+# utils::rcu define
+#
+# rcu repository creation utility for 12c
+#
+# @param version used weblogic software like 1036
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param fmw_product product for which to create a RCU reposority for
+# @param oracle_fmw_product_home_dir path of the rcu command
+# @param rcu_action create or delete a repository
+# @param rcu_jdbc_url jdbc url to the RCU database server
+# @param rcu_database_url rcu database url
+# @param rcu_prefix RCU prefix
+# @param rcu_password rcu schema password
+# @param rcu_sys_user rcu sys schema username
+# @param rcu_sys_password rcu sys username password
 #
 define orawls::utils::rcu(
   Integer $version                       = $::orawls::weblogic::version,

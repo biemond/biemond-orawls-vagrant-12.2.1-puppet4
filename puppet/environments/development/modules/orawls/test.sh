@@ -22,6 +22,10 @@ bundle install --without development
 bundle --version
 gem update --system 2.1.11
 
+
+
+rake module:clean
+bundle exec puppet strings generate ./\*\*/*.pp ./lib/puppet/functions/**/*.rb
 bundle exec rake syntax
 bundle exec rake lint
 bundle exec rake ci:setup:rspec spec

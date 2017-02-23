@@ -1,7 +1,32 @@
-# == Define: orawls::utils::webtier
+#
+# utils::webtier define
 #
 # Add a Webtier to the Enterprise manager
-##
+#
+# @param version used weblogic software like 1036
+# @param wls_domains_dir root directory for all the WebLogic domains
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param domain_name the domain name which to connect to
+# @param adminserver_address the adminserver network name or ip, default = localhost
+# @param adminserver_port the adminserver port number, default = 7001
+# @param weblogic_user the weblogic administrator username
+# @param weblogic_password the weblogic domain password
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param action_name create or delete
+# @param webgate_configure congigure webgate
+# @param webgate_agentname webgate agent name
+# @param webgate_hostidentifier webgate hostidentifier
+# @param oamadminserverhostname oam adminserver hostname
+# @param oamadminserverport oam adminserver port number
+# @param domain_configure 11g register ohs instance with a domain
+# @param instance_name
+# @param machine_name
+#
 define orawls::utils::webtier(
   Integer $version                                        = $::orawls::weblogic::version,
   String $weblogic_home_dir                               = $::orawls::weblogic::weblogic_home_dir,

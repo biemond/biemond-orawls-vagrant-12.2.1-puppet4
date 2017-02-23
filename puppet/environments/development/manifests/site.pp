@@ -7,12 +7,12 @@ Package{allow_virtual => false,}
 node 'admin.example.com' {
 
   include os
+  include orawls
   include ssh
   include java
   include orawls::weblogic
   include orautils, jdk7::urandomfix
   # include weblogic
-
   include fmw
   include opatch
   include domains
@@ -26,12 +26,12 @@ node 'admin.example.com' {
   include jms
   include mt
   include pack_domain
-  include deployments
+  # include deployments
 
-  # include ora_em_agent
+  # # include ora_em_agent
 
   Class[java] -> Class[orawls::weblogic]
-  # Jdk7::Install7  <| |> -> Orawls::Weblogic_type <| |>
+  # # Jdk7::Install7  <| |> -> Orawls::Weblogic_type <| |>
 
 }
 
@@ -173,9 +173,9 @@ class java {
 
   include jdk7
 
-  jdk7::install7{ 'jdk-8u72-linux-x64':
-      version                     => "8u72" ,
-      full_version                => "jdk1.8.0_72",
+  jdk7::install7{ 'jdk-8u111-linux-x64':
+      version                     => "8u111" ,
+      full_version                => "jdk1.8.0_111",
       alternatives_priority       => 18001,
       x64                         => true,
       download_dir                => "/var/tmp/install",
@@ -207,6 +207,7 @@ class weblogic {
 }
 
 class fmw{
+  require java, orawls::weblogic
   $default_params = {}
   $fmw_installations = hiera('fmw_installations', {})
   create_resources('orawls::fmw',$fmw_installations, $default_params)

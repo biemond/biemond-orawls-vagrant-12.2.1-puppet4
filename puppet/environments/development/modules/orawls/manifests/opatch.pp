@@ -1,8 +1,21 @@
-# == Define: orawls::opatch
+#
+# opatch define
 #
 # installs oracle patches for Oracle products
 #
-##
+# @param ensure should exist or not
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param oracle_product_home_dir on what Oracle home to patch should be applied
+# @param patch_id id of the patch
+# @param patch_file only the full name of the patch
+# @param puppet_download_mnt_point the source of the installation files
+# @param orainstpath_dir the location of orainst.loc, default it will the default directory for Linux or Solaris
+# @param remote_file to control if the filename is already accessiable on the VM 
+#
 define orawls::opatch(
   Enum['present','absent'] $ensure  = 'present',
   String $oracle_product_home_dir   = undef, # /opt/oracle/middleware11gR1

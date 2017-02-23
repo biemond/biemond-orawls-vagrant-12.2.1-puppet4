@@ -1,8 +1,33 @@
-# == Define: orawls::fmw
+#
+# fmw define
 #
 # installs FMW software like ADF, FORMS, OIM, WC, WCC, OSB, SOA Suite, B2B, MFT
 #
-##
+# @param version used weblogic software like 1036
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param oracle_base_home_dir base directory of the oracle installation, it will contain the default Oracle inventory and the middleware home
+# @param fmw_product what to install
+# @param fmw_file1 the fmw install file 1
+# @param fmw_file2 the fmw install file 2
+# @param fmw_file3 the fmw install file 3
+# @param fmw_file4 the fmw install file 4
+# @param bpm enable bpm on the soa suite install
+# @param healthcare enable healthcare on the b2b install
+# @param puppet_download_mnt_point the source of the installation files
+# @param temp_dir override the default temp directory /tmp
+# @param ohs_mode the install type of webtier
+# @param wcs_mode the install type of webcenter sites
+# @param oracle_inventory_dir define your own location of the Oracle inventory
+# @param orainstpath_dir the location of orainst.loc, default it will the default directory for Linux or Solaris
+# @param oracle_home_dir override what Oracle home should be inside the middleware home
+# @param remote_file to control if the filename is already accessiable on the VM 
+#
 define orawls::fmw(
   Integer $version                                        = $::orawls::weblogic::version,
   String $weblogic_home_dir                               = $::orawls::weblogic::weblogic_home_dir,
@@ -498,11 +523,11 @@ define orawls::fmw(
     fail('unknown fmw_product value choose adf|soa|soaqs|osb|oim|oam|wc|wcc|web|webgate|oud')
   }
 
-  # check if the oracle home already exists, only for < 12.1.2, this is for performance reasons
+  # check if the oracle product already exists, only for < 12.1.2, this is for performance reasons
   if $version == 1212 or $version == 1213 or $version >= 1221 {
     $continue = true
   } else {
-    $found = orawls_oracle_exists($oracleHome)
+    $found = orawls::fmw_exists($oracleHome)
 
     if $found == undef {
       $continue = true

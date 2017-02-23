@@ -1,4 +1,30 @@
 #
+# resourceadapter define
+#
+# configure a SOA/OSB resource adapter
+#
+# @param wls_domains_dir root directory for all the WebLogic domains
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param domain_name the domain name which to connect to
+# @param adminserver_address the adminserver network name or ip, default = localhost
+# @param adminserver_port the adminserver port number, default = 7001
+# @param weblogic_user the weblogic administrator username
+# @param weblogic_password the weblogic domain password
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param adapter_name adapter name
+# @param adapter_path adapter path
+# @param adapter_plan_dir adapter plan directory
+# @param adapter_plan adapter plan name
+# @param adapter_entry adapter entry
+# @param adapter_entry_property entry properties
+# @param adapter_entry_value entry properties values
+# @param userConfigFile user config file path
+# @param userKeyFile user key file path
 #
 define orawls::resourceadapter(
   String $weblogic_home_dir                   = $::orawls::weblogic::weblogic_home_dir,
@@ -35,7 +61,7 @@ define orawls::resourceadapter(
   $domain_dir = "${domains_dir}/${domain_name}"
 
   # check if the object already exists on the weblogic domain
-  $found = artifact_exists($domain_dir,'resource',$adapter_name,"${adapter_plan_dir}/${adapter_plan}" )
+  $found = orawls::resource_adapter_exists($domain_dir,'resource',$adapter_name,"${adapter_plan_dir}/${adapter_plan}" )
   if $found == undef {
     $continuePlan = true
     notify {"wls::resourceadapter ${title} continue cause nill":}
@@ -50,7 +76,7 @@ define orawls::resourceadapter(
 
 
   # check if the object already exists on the weblogic domain
-  $foundEntry = artifact_exists($domain_dir ,'resource_entry',$adapter_name,$adapter_entry )
+  $foundEntry = orawls::resource_adapter_exists($domain_dir ,'resource_entry',$adapter_name,$adapter_entry )
   if $foundEntry == undef {
     $continueEntry = true
     notify {"wls::resourceadapter entry ${adapter_entry} ${title} continue cause nill":}

@@ -1,8 +1,23 @@
-# == Define: orawls::utils::forms11gpatch
+#
+# utils::forms11gpatch define
 #
 # installs FMW 11g forms patch
 #
-##
+# @param version used weblogic software like 1036
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param temp_dir override the default temp directory /tmp
+# @param oracle_base_home_dir base directory of the oracle installation, it will contain the default Oracle inventory and the middleware home
+# @param oracle_home_dir on what Oracle home to patch should be applied
+# @param fmw_file1 the fmw install file 1
+# @param puppet_download_mnt_point the location of the filename like puppet:///modules/orawls/ or /software
+# @param remote_file to control if the filename is already accessiable on the VM 
+#
 define orawls::utils::forms11gpatch (
   Integer $version                                        = $::orawls::weblogic::version,
   String $weblogic_home_dir                               = $::orawls::weblogic::weblogic_home_dir,

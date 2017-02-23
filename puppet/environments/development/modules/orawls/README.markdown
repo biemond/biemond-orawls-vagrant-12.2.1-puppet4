@@ -1,15 +1,17 @@
 # Oracle WebLogic / Fusion Middleware puppet module V2
 [![Build Status](https://travis-ci.org/biemond/biemond-orawls.svg?branch=master)](https://travis-ci.org/biemond/biemond-orawls) ![Puppet Forge Version](https://img.shields.io/puppetforge/v/biemond/orawls.svg) ![Puppet Forge Score](https://img.shields.io/puppetforge/f/biemond/orawls.svg) ![Puppet Forge Downloads](http://img.shields.io/puppetforge/dt/biemond/orawls.svg) [![Code Climate](https://codeclimate.com/github/biemond/biemond-orawls/badges/gpa.svg)](https://codeclimate.com/github/biemond/biemond-orawls) [![Coverage Status](https://coveralls.io/repos/biemond/biemond-orawls/badge.svg?branch=master&service=github)](https://coveralls.io/github/biemond/biemond-orawls?branch=master)
 
-Install, configures and manages WebLogic version 10.3 - 12.2.1.1
+Install, configures and manages WebLogic version 10.3 - 12.2.1
 
 This module should work for all Linux & Solaris versions like RedHat, CentOS, Ubuntu, Debian, Suse SLES, OracleLinux, Solaris 10,11 sparc / x86
 
-Only for Puppet >= 4.3 and uses the latest puppet 4 features like
+Only for Puppet >= 4.3 and this module uses the latest puppet 4 features like
+
 - Strong data typing
-- Internal hiera module data
+- Internal hiera/lookup module data
 - uses Facts array
 - epp templating instead of erb
+- puppet 4 ruby functions
 
 For Puppet 3, 4 you have to use the latest 1.x version of this orawls module
 
@@ -33,7 +35,8 @@ More: https://github.com/biemond/biemond-orawls/graphs/contributors
 ## Support
 
 If you need support, checkout the [wls_install](https://www.enterprisemodules.com/shop/products/puppet-wls_install-module) and [wls_config](https://www.enterprisemodules.com/shop/products/puppet-wls_config-module) modules from [Enterprise Modules](https://www.enterprisemodules.com/)
-[![Enterprise Modules](https://raw.githubusercontent.com/enterprisemodules/public_images/master/banner1.jpg)](https://www.enterprisemodules.com)
+
+[![Enterprise Modules](https://www.enterprisemodules.com/images/puppet-logo.png)](https://www.enterprisemodules.com)
 
 ## Dependencies
 
@@ -1179,7 +1182,7 @@ You can configure OHS locations using __orawls::ohs::forwarder__ resource:
 
 Notify option is needed to OHS restart and load changes. Require is needed because, without it, notify option may attempt to reload server before it's running.
 
-OHS will include all __.conf__ files at ${domain_path}/config/fmwconfig/components/OHS/${server_name}/mod_wl_ohs.d folder.
+OHS will include all __.conf__ files at domain_path/config/fmwconfig/components/OHS/ server_name /mod_wl_ohs.d folder.
 
 
 ### fmwlogdir

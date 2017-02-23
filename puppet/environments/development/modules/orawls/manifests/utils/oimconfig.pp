@@ -1,6 +1,39 @@
-# == Define: orawls::utils::oimconfig
+#
+# utils::oimconfig define
 #
 # does all the Oracle Identity Management configuration
+#
+# @param version used weblogic software like 1036
+# @param wls_domains_dir root directory for all the WebLogic domains
+# @param middleware_home_dir directory of the Oracle software inside the oracle base directory
+# @param domain_name the domain name which to connect to
+# @param adminserver_address the adminserver network name or ip, default = localhost
+# @param adminserver_port the adminserver port number, default = 7001
+# @param weblogic_user the weblogic administrator username
+# @param weblogic_password the weblogic domain password
+# @param weblogic_home_dir directory of the WebLogic software inside the middleware directory
+# @param jdk_home_dir full path to the java home directory like /usr/java/default
+# @param os_user the user name with oracle as default
+# @param os_group the group name with dba as default
+# @param log_output show all the output of the the exec actions
+# @param download_dir the directory for temporary created files by this class
+# @param adminserver_name WebLogic AdminServer name
+# @param nodemanager_port the port number of the used NodeManager
+# @param bi_cluster_name the BI Cluster name
+# @param bi_enabled BI enabled
+# @param repository_prefix the used RCU prefix
+# @param repository_database_url the JDBC url of the RCU database
+# @param repository_password the password of the RCU schemas
+# @param oim_home full oim home path
+# @param server_config do server config configuration
+# @param oim_password oim password
+# @param remote_config do remote config configuration
+# @param keystore_password keystore password
+# @param design_config do design config configuration
+# @param oimserver_hostname oim hostname
+# @param oimserver_port oim port number
+# @param soaserver_name soa erver managed server name
+# @param oimserver_name oim server managed server name
 #
 define orawls::utils::oimconfig(
   Integer $version                                        = undef,

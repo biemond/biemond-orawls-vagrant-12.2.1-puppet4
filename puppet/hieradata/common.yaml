@@ -44,6 +44,9 @@ wls_jsse_enabled:         true
 
 orawls::weblogic::version:                   *wls_version
 orawls::weblogic::filename:                  'fmw_12.2.1.2.0_wls.jar'
+# orawls::weblogic::filename:                  'fmw_12.2.1.2.0_infrastructure.jar'
+# orawls::weblogic::fmw_infra:                 true
+
 orawls::weblogic::log_output:                true
 orawls::weblogic::jdk_home_dir:              *wls_jdk_home_dir
 orawls::weblogic::oracle_base_home_dir:      *wls_oracle_base_home_dir
@@ -52,6 +55,7 @@ orawls::weblogic::remote_file:               false
 orawls::weblogic::wls_domains_dir:           *wls_domains_dir
 orawls::weblogic::wls_apps_dir:              *wls_apps_dir
 orawls::weblogic::middleware_home_dir:       *wls_middleware_home_dir
+orawls::weblogic::weblogic_home_dir:         *wls_weblogic_home_dir
 
 
 
@@ -83,13 +87,17 @@ orawls::weblogic::middleware_home_dir:       *wls_middleware_home_dir
 
 
 # fmw_installations:
+#   'osb1221':
+#     fmw_product:               "osb"
+#     fmw_file1:                 "fmw_12.2.1.2.0_osb_Disk1_1of1.zip"
+#     oracle_base_home_dir:      *wls_oracle_base_home_dir
 
-opatch_instances:
-  '24910964':
-    ensure:                   'present'
-    oracle_product_home_dir:  *wls_middleware_home_dir
-    patch_id:                 24910964
-    patch_file:               "p24910964_122120_Generic.zip"
+# opatch_instances:
+#   '24910964':
+#     ensure:                   'present'
+#     oracle_product_home_dir:  *wls_middleware_home_dir
+#     patch_id:                 24910964
+#     patch_file:               "p24910964_122120_Generic.zip"
 
 # handy WebLogic scripts in /opt/scripts/wls
 orautils::os_oracle_home:      *wls_oracle_base_home_dir
