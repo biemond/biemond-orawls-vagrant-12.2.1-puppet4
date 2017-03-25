@@ -19,25 +19,6 @@ class os {
   $host_instances = hiera('hosts', {})
   create_resources('host',$host_instances, $default_params)
 
-  # exec { "create swap file":
-  #   command => "/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=8192",
-  #   creates => "/var/swap.1",
-  # }
-
-  # exec { "attach swap file":
-  #   command => "/sbin/mkswap /var/swap.1 && /sbin/swapon /var/swap.1",
-  #   require => Exec["create swap file"],
-  #   unless => "/sbin/swapon -s | grep /var/swap.1",
-  # }
-
-  # #add swap file entry to fstab
-  # exec {"add swapfile entry to fstab":
-  #   command => "/bin/echo >>/etc/fstab /var/swap.1 swap swap defaults 0 0",
-  #   require => Exec["attach swap file"],
-  #   user => root,
-  #   unless => "/bin/grep '^/var/swap.1' /etc/fstab 2>/dev/null",
-  # }
-
   service { iptables:
     enable    => false,
     ensure    => false,
@@ -147,9 +128,9 @@ class java {
 
   include jdk7
 
-  jdk7::install7{ 'jdk-8u72-linux-x64':
-      version                     => "8u72" ,
-      full_version                => "jdk1.8.0_72",
+  jdk7::install7{ 'jdk-8u121-linux-x64':
+      version                     => "8u121" ,
+      full_version                => "jdk1.8.0_121",
       alternatives_priority       => 18001,
       x64                         => true,
       download_dir                => "/var/tmp/install",
@@ -158,18 +139,6 @@ class java {
       cryptography_extension_file => "jce_policy-8.zip",
       source_path                 => "/software",
   }
-
-  # jdk7::install7{ 'jdk-8u65-linux-x64':
-  #     version                     => "8u65" ,
-  #     full_version                => "jdk1.8.0_65",
-  #     alternatives_priority       => 18001,
-  #     x64                         => true,
-  #     download_dir                => "/var/tmp/install",
-  #     urandom_java_fix            => true,
-  #     rsa_key_size_fix            => true,
-  #     cryptography_extension_file => "jce_policy-8.zip",
-  #     source_path                 => "/software",
-  # }
 
 }
 
