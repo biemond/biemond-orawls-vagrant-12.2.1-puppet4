@@ -35,35 +35,35 @@ describe 'jdk7::install7' , :type => :define do
 
     describe "on operatingsystem CentOS" do
       it do
-        should contain_exec("create /install directory").with({
-            'command' => "mkdir -p /install",
-            'unless'  => "test -d /install",
+        should contain_exec("create /var/tmp/install directory").with({
+            'command' => "mkdir -p /var/tmp/install",
+            'unless'  => "test -d /var/tmp/install",
             'user'    => 'root',
           })
       end
       it do
-        should contain_file("/install").with({
+        should contain_file("/var/tmp/install").with({
             'ensure'     => 'directory',
             'replace'    => false,
             'owner'      => 'root',
             'group'      => 'root',
             'mode'       => '0777',
-          }).that_requires('Exec[create /install directory]')
+          }).that_requires('Exec[create /var/tmp/install directory]')
       end
       it do
-        should contain_file("/install/jdk-7u79-linux-x64.tar.gz").with({
+        should contain_file("/var/tmp/install/jdk-7u79-linux-x64.tar.gz").with({
             'ensure'     => 'file',
             'source'     => "puppet:///modules/jdk7//jdk-7u79-linux-x64.tar.gz",
             'replace'    => false,
             'owner'      => 'root',
             'group'      => 'root',
             'mode'       => '0777',
-          }).that_requires('File[/install]')
+          }).that_requires('File[/var/tmp/install]')
       end
 
       it do
         should contain_jdk7__config__javaexec("jdkexec JDK7 7u79").with({
-            'download_dir'                => '/install',
+            'download_dir'                => '/var/tmp/install',
             'full_version'                => 'jdk1.7.0_79',
             'java_homes_dir'              => '/usr/java',
             'jdk_file'                    => 'jdk-7u79-linux-x64.tar.gz',
@@ -71,7 +71,7 @@ describe 'jdk7::install7' , :type => :define do
             'alternatives_priority'       => '17065',
             'user'                        => 'root',
             'group'                       => 'root',
-           }).that_requires("File[/install/jdk-7u79-linux-x64.tar.gz]")
+           }).that_requires("File[/var/tmp/install/jdk-7u79-linux-x64.tar.gz]")
       end
       it do
         should contain_exec("set urandom jdk1.7.0_79").with({

@@ -2,7 +2,16 @@ JDK JAVA SE 7, 8 puppet module
 ==============================
 [![Build Status](https://travis-ci.org/biemond/biemond-jdk7.png)](https://travis-ci.org/biemond/biemond-jdk7)
 
-Works with Puppet 2.7 or higher
+Only for Puppet >= 4.3 and this module uses the latest puppet 4 features like
+
+- Strong data typing
+- Internal hiera/lookup module data
+- uses Facts array
+
+For Puppet 3, 4 you have to use the latest 0.x version of this jkd7 module
+
+source code is located at [puppet4 branch](https://github.com/biemond/biemond-jdk7/tree/puppet4)
+
 
 Should work for RedHat, CentOS, Ubuntu, Debian, Suse SLES or OracleLinux
 

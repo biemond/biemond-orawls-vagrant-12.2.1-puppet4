@@ -1,0 +1,12 @@
+---
+
+jdk7::exec_path:         '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin'
+
+jdk7::default_home:      '/usr/java'
+
+jdk7::user:              'root'
+jdk7::group:             'root'
+
+jdk7::tmp_dir:           '/tmp'
+jdk7::download_dir:      '/var/tmp/install'
+jdk7::module_mountpoint: 'puppet:///modules/jdk7/'

@@ -13,20 +13,20 @@
 #  set -Djava.security.egd=file:/dev/./urandom param
 #
 define jdk7::install7 (
-  $version                     = '7u79',
-  $full_version                = 'jdk1.7.0_79',
-  $java_homes                  = '/usr/java',
-  $x64                         = true,
-  $alternatives_priority       = 17065,
-  $download_dir                = '/install',
-  $cryptography_extension_file = undef,
-  $urandom_java_fix            = true,
-  $rsa_key_size_fix            = false,  # set true for weblogic 12.1.1 and jdk 1.7 > version 40
-  $source_path                 = 'puppet:///modules/jdk7/',
-  $user                        = 'root',
-  $group                       = 'root',
-  $default_links               = true,
-  $install_alternatives        = true,
+  String $version                               = '7u79',
+  String $full_version                          = 'jdk1.7.0_79',
+  String $java_homes                            = lookup('jdk7::default_home'),
+  Boolean $x64                                  = true,
+  Integer $alternatives_priority                = 17065,
+  String $download_dir                          = lookup('jdk7::download_dir'),
+  Optional[String] $cryptography_extension_file = undef,
+  Boolean $urandom_java_fix                     = true,
+  Boolean $rsa_key_size_fix                     = false,  # set true for weblogic 12.1.1 and jdk 1.7 > version 40
+  String $source_path                           = lookup('jdk7::module_mountpoint'),
+  String $user                                  = lookup('jdk7::user'),
+  String $group                                 = lookup('jdk7::group'),
+  Boolean $default_links                        = true,
+  Boolean $install_alternatives                 = true,
 ) {
 
   if ( $x64 == true ) {
@@ -35,11 +35,11 @@ define jdk7::install7 (
     $type = 'i586'
   }
 
-  case $::kernel {
+  case $facts['kernel'] {
     'Linux': {
       $install_version   = 'linux'
       $install_extension = '.tar.gz'
-      $path              = '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:'
+      $path              = lookup('jdk7::exec_path')
     }
     default: {
       fail("Unrecognized operating system ${::kernel}, please use it on a Linux host")
@@ -50,10 +50,11 @@ define jdk7::install7 (
 
   if !defined(Exec["create ${download_dir} directory"]) {
     exec { "create ${download_dir} directory":
-        command => "mkdir -p ${download_dir}",
-        unless  => "test -d ${download_dir}",
-        path    => $path,
-        user    => $user,
+      command => "mkdir -p ${download_dir}",
+      unless  => "test -d ${download_dir}",
+      path    => $path,
+      user    => $user,
+      cwd     => lookup('jdk7::tmp_dir'),
     }
   }
 
@@ -115,6 +116,7 @@ define jdk7::install7 (
       require => Jdk7::Config::Javaexec["jdkexec ${title} ${version}"],
       path    => $path,
       user    => $user,
+      cwd     => lookup('jdk7::tmp_dir'),
     }
   }
   if ($rsa_key_size_fix == true) {
@@ -124,6 +126,7 @@ define jdk7::install7 (
       require => Jdk7::Config::Javaexec["jdkexec ${title} ${version}"],
       path    => $path,
       user    => $user,
+      cwd     => lookup('jdk7::tmp_dir'),
     }
     exec { "set RSA keySize ${full_version}":
       command     => "sed -i -e's/RSA keySize < 1024/RSA keySize < 512/g' ${java_homes}/${full_version}/jre/lib/security/java.security",
@@ -132,6 +135,7 @@ define jdk7::install7 (
       refreshonly => true,
       path        => $path,
       user        => $user,
+      cwd         => lookup('jdk7::tmp_dir'),
     }
   }
 }

@@ -1,0 +1,10 @@
+---
+version: 4
+datadir: data
+hierarchy:
+  - name: "osfamily"
+    backend: yaml
+    path: "osfamily/%{facts.osfamily}"
+
+  - name: "common"
+    backend: yaml

@@ -14,9 +14,9 @@
 #
 class jdk7::urandomfix () {
 
-  $path = '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:'
+  $path = lookup('jdk7::exec_path')
 
-  case $::operatingsystemmajrelease {
+  case $facts['operatingsystemmajrelease'] {
     5:       { $rng_package = 'rng-utils' }
     default: { $rng_package = 'rng-tools' }
   }
@@ -27,9 +27,9 @@ class jdk7::urandomfix () {
     }
   }
 
-  case $::osfamily {
+  case $facts['osfamily'] {
     'RedHat': {
-      case $::operatingsystemmajrelease {
+      case $facts['operatingsystemmajrelease'] {
         '7': {
           exec { 'set urandom /lib/systemd/system/rngd.service':
             command => "sed -i -e's/ExecStart=\\/sbin\\/rngd -f/ExecStart=\\/sbin\\/rngd -r \\/dev\\/urandom -o \\/dev\\/random -f/g' /lib/systemd/system/rngd.service;systemctl daemon-reload;systemctl restart rngd.service",
@@ -122,8 +122,7 @@ class jdk7::urandomfix () {
       }
     }
     default: {
-      fail("Unrecognized osfamily ${::osfamily}, please use it on a Linux host")
+      fail("Unrecognized osfamily ${facts['osfamily']}, please use it on a Linux host")
     }
-
   }
 }

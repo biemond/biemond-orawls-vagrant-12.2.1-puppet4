@@ -5,22 +5,23 @@
 # set this java as default
 #
 define jdk7::config::javaexec (
-  $download_dir                = undef,
-  $full_version                = undef,
-  $java_homes_dir              = undef,
-  $jdk_file                    = undef,
-  $cryptography_extension_file = undef,
-  $alternatives_priority       = undef,
-  $user                        = undef,
-  $group                       = undef,
-  $default_links               = undef,
-  $install_alternatives        = undef,
-  $path = '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
+  String $download_dir                          = undef,
+  String $full_version                          = undef,
+  String $java_homes_dir                        = undef,
+  String $jdk_file                              = undef,
+  Optional[String] $cryptography_extension_file = undef,
+  Integer $alternatives_priority                = undef,
+  String $user                                  = lookup('jdk7::user'),
+  String $group                                 = lookup('jdk7::group'),
+  Boolean $default_links                        = undef,
+  Boolean $install_alternatives                 = undef,
 ) {
 
+  $path = lookup('jdk7::exec_path')
+  $default_java_home = lookup('jdk7::default_home')
   # check java install folder
-  if ! defined(File['/usr/java']) {
-    file { '/usr/java' :
+  if ! defined(File[$default_java_home]) {
+    file { $default_java_home:
       ensure  => directory,
       replace => false,
       owner   => $user,
@@ -79,20 +80,20 @@ define jdk7::config::javaexec (
       logoutput => true,
       user      => $user,
       group     => $group,
-    } ~>
-    exec { "Move jce ${full_version} jar files to ${security_dir}":
+    } ~> exec { "Move jce ${full_version} jar files to ${security_dir}":
       command     => "find ${jarfiles} -exec ${mv_cmd}",
       group       => $group,
       path        => $path,
       refreshonly => true,
       user        => $user,
-    } ~>
-    exec { "touch ${done_file}":
+      cwd         => $security_dir,
+    } ~> exec { "touch ${done_file}":
       command     => "touch ${done_file}",
       group       => $group,
       path        => $path,
       refreshonly => true,
       user        => $user,
+      cwd         => lookup('jdk7::tmp_dir'),
     }
   }
 
@@ -106,42 +107,43 @@ define jdk7::config::javaexec (
     user      => $user,
     group     => $group,
     require   => Exec["extract java ${full_version}"],
+    cwd       => lookup('jdk7::tmp_dir'),
   }
 
   if ( $default_links ){
-    if(!defined(File['/usr/java/latest'])) {
-        # java link to latest
-        file { '/usr/java/latest':
-          ensure  => link,
-          target  => $java_dir,
-          require => Exec["extract java ${full_version}"],
-          owner   => $user,
-          group   => $group,
-          mode    => '0755',
-        }
+    if(!defined(File["${$default_java_home}/latest"])) {
+      # java link to latest
+      file { "${$default_java_home}/latest":
+        ensure  => link,
+        target  => $java_dir,
+        require => Exec["extract java ${full_version}"],
+        owner   => $user,
+        group   => $group,
+        mode    => '0755',
+      }
 
-        # java link to default
-        file { '/usr/java/default':
-          ensure  => link,
-          target  => '/usr/java/latest',
-          require => File['/usr/java/latest'],
-          owner   => $user,
-          group   => $group,
-          mode    => '0755',
-        }
+      # java link to default
+      file { '/usr/java/default':
+        ensure  => link,
+        target  => "${$default_java_home}/latest",
+        require => File["${$default_java_home}/latest"],
+        owner   => $user,
+        group   => $group,
+        mode    => '0755',
+      }
     }
   }
 
   $alternatives = [ 'jar', 'java', 'javac', 'keytool', 'java_sdk' ]
   if ( $install_alternatives ){
     if(!defined(Jdk7::Config::Alternatives['java'])) {
-        jdk7::config::alternatives{ $alternatives:
-          java_home_dir => $java_homes_dir,
-          full_version  => $full_version,
-          priority      => $alternatives_priority,
-          user          => $user,
-          group         => $group,
-        }
+      jdk7::config::alternatives{ $alternatives:
+        java_home_dir => $java_homes_dir,
+        full_version  => $full_version,
+        priority      => $alternatives_priority,
+        user          => $user,
+        group         => $group,
+      }
     }
   }
 }
