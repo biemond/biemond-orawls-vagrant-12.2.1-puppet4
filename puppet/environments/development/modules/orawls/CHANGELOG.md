@@ -1,5 +1,13 @@
 # History
 
+## 2.0.7
+- wls_setting has tmp_path parameter for the wls types index output, wls types index output is now uinque for every value/domain of wls_setting
+- get_attribute_value for index files of the wls types to handle all data types on the right way, located in common.py.erb
+
+## 2.0.6
+- fix nil or '' values on onprovider_specific of wls_authentication_provider
+- be able to set orainstpath_dir parameter on weblogic, weblogic_type and fmw
+
 ## 2.0.5
 - Fix ohs domain for 12.1.3 webtier
 - Added FMW cleanup on the extract directory and on the FMW files when remote file = true
