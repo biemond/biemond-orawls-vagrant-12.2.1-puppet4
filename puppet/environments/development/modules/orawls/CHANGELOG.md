@@ -1,8 +1,15 @@
 # History
 
+## 2.0.8
+- wls_datasource new attributes datasourcetype, statementcachetype
+- wls_jdbc_persistence_store new attributes distribution_policy, migration_policy
+- 12.2.1 ohs/webtier standalone domain fixes
+- nodemanager linux netstat check use bash in su command
+
 ## 2.0.7
 - wls_setting has tmp_path parameter for the wls types index output, wls types index output is now uinque for every value/domain of wls_setting
 - get_attribute_value for index files of the wls types to handle all data types on the right way, located in common.py.erb
+- added weblogic user to the enroll py script on copydomain manifest
 
 ## 2.0.6
 - fix nil or '' values on onprovider_specific of wls_authentication_provider
