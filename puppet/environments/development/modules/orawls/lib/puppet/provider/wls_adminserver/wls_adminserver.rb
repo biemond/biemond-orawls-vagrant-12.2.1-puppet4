@@ -84,16 +84,23 @@ EOF"
     Puppet.debug "adminserver_status #{command}"
     output = `#{command}`
 
-    output.each_line do |li|
-      unless li.nil?
-        Puppet.debug "line #{li}"
-        if li.include? name
-          Puppet.debug 'found server'
-          return 'Found'
-        end
-      end
+    command  = "#{ps_bin} #{ps_arg} | /bin/grep -v grep | /bin/grep 'weblogic.Name=#{name}' | /bin/grep #{domain_name}"
+
+    output = `#{command}`
+    exitCode = $?.exitstatus
+    Puppet.debug "adminserver_status #{command}"
+
+    #if output.nil? || output.empty?
+    if exitCode != 0
+      Puppet.debug 'server not found'
+      Puppet.debug "value of output is '#{output}'"
+      return 'NotFound'
+    else
+      Puppet.debug 'found server'
+      Puppet.debug "value of output is '#{output}'"
+      return 'Found'
     end
-    'NotFound'
+
   end
 
   def start

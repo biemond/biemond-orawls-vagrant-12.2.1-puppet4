@@ -1,5 +1,16 @@
 # History
 
+## 2.0.10
+- better adminserver control status check
+- more allow $ in the weblogic password
+- better datasource index check
+- datasource new attributes StatementTimeout, LoginDelaySeconds 
+
+## 2.0.9
+- add webcenter sites, support for wcs domain
+- allow $ in the weblogic password
+- hide trust_keystore_passphrase output in wls_settings
+
 ## 2.0.8
 - wls_datasource new attributes datasourcetype, statementcachetype
 - wls_jdbc_persistence_store new attributes distribution_policy, migration_policy
