@@ -43,7 +43,7 @@ wls_apps_dir:             &wls_apps_dir             '/opt/oracle/wlsdomains/appl
 wls_jsse_enabled:         true
 
 orawls::weblogic::version:                   *wls_version
-orawls::weblogic::filename:                  'fmw_12.2.1.2.0_wls.jar'
+orawls::weblogic::filename:                  'fmw_12.2.1.3.0_wls.jar'
 # orawls::weblogic::filename:                  'fmw_12.2.1.2.0_infrastructure.jar'
 # orawls::weblogic::fmw_infra:                 true
 

@@ -4,8 +4,8 @@ cache:
   directories:
   - vendor/bundle
 rvm:
-  - 2.2.5
-  - 2.3.1
+  - 2.2.6
+  - 2.3.2
 bundler_args: --without development
 before_install:
   -  gem update --system 2.1.11
@@ -19,7 +19,7 @@ notifications:
 env:
   - PUPPET_VERSION=4.5.3
   - PUPPET_VERSION=4.6.2
-  - PUPPET_VERSION=4.7.1
   - PUPPET_VERSION=4.8.2
   - PUPPET_VERSION=4.9.4
-  - PUPPET_VERSION=4.10.0  
+  - PUPPET_VERSION=4.10.0
+  - PUPPET_VERSION=5.0.1    
