@@ -8,8 +8,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "admin" , primary: true do |admin|
 
-    admin.vm.box = "centos-7-1611-x86_64"
-    admin.vm.box_url = "https://dl.dropboxusercontent.com/s/e7o5lvlpletkp2i/centos-7-1611-x86_64.box"
+    admin.vm.box = "centos-7-1708-x86_64"
+    admin.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
 
     admin.vm.provider :vmware_fusion do |v, override|
       override.vm.box = "centos-7-1611-x86_64-vmware"
