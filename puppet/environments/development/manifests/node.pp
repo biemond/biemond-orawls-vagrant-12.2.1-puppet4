@@ -128,9 +128,9 @@ class java {
 
   include jdk7
 
-  jdk7::install7{ 'jdk-8u121-linux-x64':
-      version                     => "8u121" ,
-      full_version                => "jdk1.8.0_121",
+  jdk7::install7{ 'jdk-8u151-linux-x64':
+      version                     => "8u151" ,
+      full_version                => "jdk1.8.0_151",
       alternatives_priority       => 18001,
       x64                         => true,
       download_dir                => "/var/tmp/install",
