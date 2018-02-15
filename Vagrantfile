@@ -66,7 +66,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "node1" do |node1|
 
     node1.vm.box = "centos-7-1611-x86_64"
-    node1.vm.box_url = "https://dl.dropboxusercontent.com/s/e7o5lvlpletkp2i/centos-7-1611-x86_64.box"
+    node1.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
 
     node1.vm.provider :vmware_fusion do |v, override|
       override.vm.box = "centos-7-1611-x86_64-vmware"
@@ -120,7 +120,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "node2" do |node2|
 
     node2.vm.box = "centos-7-1611-x86_64"
-    node2.vm.box_url = "https://dl.dropboxusercontent.com/s/e7o5lvlpletkp2i/centos-7-1611-x86_64.box"
+    node2.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
 
     node2.vm.provider :vmware_fusion do |v, override|
       override.vm.box = "centos-7-1611-x86_64-vmware"
