@@ -13,7 +13,7 @@ Should work for VMware and Virtualbox
 - Oracle Virtualbox >= 5.0
 - VMware fusion >= 8
 
-creates a 12.2.1.2 WebLogic cluster ( admin, node1, node2 )
+creates a 12.2.1.3 WebLogic cluster ( admin, node1, node2 )
 
 site.pp is located here:
 https://github.com/biemond/biemond-orawls-vagrant-12.2.1/blob/master/puppet/environments/development/manifests/site.pp
@@ -28,7 +28,7 @@ edit Vagrantfile and update the software share
 - node2.vm.synced_folder "software", "/software"
 
 ### Software
-- Weblogic 12.2.1.2 [fmw_12.2.1.2.0_wls.jar](http://www.oracle.com/technetwork/middleware/fusion-middleware/downloads/index.html)
+- Weblogic 12.2.1.3 [fmw_12.2.1.3.0_wls.jar](http://www.oracle.com/technetwork/middleware/fusion-middleware/downloads/index.html)
 - JDK 8 [jdk-8u151-linux-x64.tar.gz](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - JCE Policy 8 [jce_policy-8.zip](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html)
 
