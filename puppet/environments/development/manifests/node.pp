@@ -128,9 +128,12 @@ class java {
 
   include jdk7
 
-  jdk7::install7{ 'jdk-8u151-linux-x64':
-      version                     => "8u151" ,
-      full_version                => "jdk1.8.0_151",
+  $jdk_version  = hiera('wls_jdk_version')
+  $jdk_full_version  = hiera('wls_jdk_full_version')
+
+  jdk7::install7{ "jdk-$jdk_version-linux-x64":
+      version                     => $jdk_version,
+      full_version                => $jdk_full_version,
       alternatives_priority       => 18001,
       x64                         => true,
       download_dir                => "/var/tmp/install",
