@@ -30,7 +30,7 @@ hosts:
 wls_oracle_base_home_dir: &wls_oracle_base_home_dir "/opt/oracle"
 wls_weblogic_home_dir:    &wls_weblogic_home_dir    "/opt/oracle/middleware12c/wlserver"
 wls_middleware_home_dir:  &wls_middleware_home_dir  "/opt/oracle/middleware12c"
-wls_version:              &wls_version              12212
+wls_version:              &wls_version              12213
 
 # global OS vars
 wls_source:               &wls_source               "/software"
