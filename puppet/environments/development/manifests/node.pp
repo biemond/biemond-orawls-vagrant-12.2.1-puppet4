@@ -165,12 +165,12 @@ class nodemanager {
   $nodemanager_instances = hiera('nodemanager_instances', {})
   create_resources('orawls::nodemanager',$nodemanager_instances, $default_params)
   
-  $str_version  = hiera('wls_version')
+  $str_wls_partial_version  = hiera('wls_partial_version')
   $domains_path = hiera('wls_domains_dir')
   $domain_name  = hiera('domain_name')
 
   orautils::nodemanagerautostart{"autostart weblogic":
-    version                   => $str_version,
+    version                   => $str_wls_partial_version,
     domain                    => $domain_name,
     domain_path               => "${domains_path}/${domain_name}",
     wl_home                   => hiera('wls_weblogic_home_dir'),
