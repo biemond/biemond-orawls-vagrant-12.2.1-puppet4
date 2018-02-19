@@ -4,6 +4,8 @@ adminserver_address: "10.10.10.10"
 node1_address:       "10.10.10.100"
 node2_address:       "10.10.10.200"
 
+orautils_nodemanagerautostart_enabled: false
+
 domain_adminserver_address: &domain_adminserver_address "%{hiera('adminserver_address')}"
 domain_node1_address:       &domain_node1_address       "%{hiera('node1_address')}"
 domain_node2_address:       &domain_node2_address       "%{hiera('node2_address')}"
