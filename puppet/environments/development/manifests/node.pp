@@ -164,20 +164,23 @@ class nodemanager {
   $default_params = {}
   $nodemanager_instances = hiera('nodemanager_instances', {})
   create_resources('orawls::nodemanager',$nodemanager_instances, $default_params)
-  
-  $str_wls_partial_version  = hiera('wls_partial_version')
-  $domains_path = hiera('wls_domains_dir')
-  $domain_name  = hiera('domain_name')
 
-  orautils::nodemanagerautostart{"autostart weblogic":
-    version                   => $str_wls_partial_version,
-    domain                    => $domain_name,
-    domain_path               => "${domains_path}/${domain_name}",
-    wl_home                   => hiera('wls_weblogic_home_dir'),
-    user                      => hiera('wls_os_user'),
-    jsse_enabled              => hiera('wls_jsse_enabled'             ,false),
-    custom_trust              => hiera('wls_custom_trust'             ,false),
-    trust_keystore_file       => hiera('wls_trust_keystore_file'      ,undef),
-    trust_keystore_passphrase => hiera('wls_trust_keystore_passphrase',undef),
+  if (hiera('orautils_nodemanagerautostart_enabled')) {
+    $str_wls_partial_version  = hiera('wls_partial_version')
+    $domains_path = hiera('wls_domains_dir')
+    $domain_name  = hiera('domain_name')
+
+    orautils::nodemanagerautostart{"autostart weblogic":
+      version                   => $str_wls_partial_version,
+      domain                    => $domain_name,
+      domain_path               => "${domains_path}/${domain_name}",
+      wl_home                   => hiera('wls_weblogic_home_dir'),
+      user                      => hiera('wls_os_user'),
+      jsse_enabled              => hiera('wls_jsse_enabled'             ,false),
+      custom_trust              => hiera('wls_custom_trust'             ,false),
+      trust_keystore_file       => hiera('wls_trust_keystore_file'      ,undef),
+      trust_keystore_passphrase => hiera('wls_trust_keystore_passphrase',undef),
+    }
   }
+
 }
