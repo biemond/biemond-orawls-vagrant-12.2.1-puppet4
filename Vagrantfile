@@ -7,6 +7,7 @@ Vagrant.require_version ">= 1.6.0"
 
 require 'yaml'
 
+boxes = YAML.load_file('./boxes.yaml')
 common = YAML.load_file('./puppet/hieradata/common.yaml')
 puppet_run = (common['orautils_nodemanagerautostart_enabled']) ? "once" : "always"
 
@@ -14,12 +15,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "admin" , primary: true do |admin|
 
-    admin.vm.box = "centos-7-1708-x86_64"
-    admin.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
+    admin.vm.box = boxes['virtualbox.box']
+    admin.vm.box_url = boxes['virtualbox.box_url']
 
     admin.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = "centos-7-1611-x86_64-vmware"
-      override.vm.box_url = "https://dl.dropboxusercontent.com/s/6hqh2ntbiyu3srt/centos-7-1611-x86_64-vmware.box"
+      override.vm.box = boxes['vmware.box']
+      override.vm.box_url = boxes['vmware.box_url']
     end
 
     admin.vm.hostname = "admin.example.com"
@@ -28,16 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     admin.vm.network :private_network, ip: "10.10.10.10"
 
-    admin.vm.provider :vmware_fusion do |vb|
-      vb.vmx["numvcpus"] = "2"
-      vb.vmx["memsize"] = "2512"
-    end
-
-    admin.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "2512"]
-      vb.customize ["modifyvm", :id, "--name", "admin"]
-      vb.customize ["modifyvm", :id, "--cpus"  , 2]
-    end
+    admin.vb.memory = 2512
+    admin.vb.cpus = 2
 
     admin.vm.provision :shell, path: "./puppet_config.sh"
 
@@ -71,12 +64,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node1" do |node1|
 
-    node1.vm.box = "centos-7-1708-x86_64"
-    node1.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
+    node1.vm.box = boxes['virtualbox.box']
+    node1.vm.box_url = boxes['virtualbox.box_url']
 
     node1.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = "centos-7-1611-x86_64-vmware"
-      override.vm.box_url = "https://dl.dropboxusercontent.com/s/6hqh2ntbiyu3srt/centos-7-1611-x86_64-vmware.box"
+      override.vm.box = boxes['vmware.box']
+      override.vm.box_url = boxes['vmware.box_url']
     end
 
     node1.vm.hostname = "node1.example.com"
@@ -85,15 +78,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node1.vm.network :private_network, ip: "10.10.10.100"
 
-    node1.vm.provider :vmware_fusion do |vb|
-      vb.vmx["numvcpus"] = "1"
-      vb.vmx["memsize"] = "2512"
-    end
-
-    node1.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "2512"]
-      vb.customize ["modifyvm", :id, "--name", "node1"]
-    end
+    node1.vm.provider.memory = 2512
 
     node1.vm.provision :shell, path: "./puppet_config.sh"
 
@@ -125,12 +110,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node2" do |node2|
 
-    node2.vm.box = "centos-7-1708-x86_64"
-    node2.vm.box_url = "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box"
+    node2.vm.box = boxes['virtualbox.box']
+    node2.vm.box_url = boxes['virtualbox.box_url']
 
     node2.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = "centos-7-1611-x86_64-vmware"
-      override.vm.box_url = "https://dl.dropboxusercontent.com/s/6hqh2ntbiyu3srt/centos-7-1611-x86_64-vmware.box"
+      override.vm.box = boxes['vmware.box']
+      override.vm.box_url = boxes['vmware.box_url']
     end
 
     node2.vm.hostname = "node2.example.com"
@@ -139,15 +124,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node2.vm.network :private_network, ip: "10.10.10.200", auto_correct: true
 
-    node2.vm.provider :vmware_fusion do |vb|
-      vb.vmx["numvcpus"] = "1"
-      vb.vmx["memsize"] = "2512"
-    end
-
-    node2.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "2512"]
-      vb.customize ["modifyvm", :id, "--name", "node2"]
-    end
+    node2.vm.provider.memory = 2512
 
     node2.vm.provision :shell, path: "./puppet_config.sh"
 

@@ -1,0 +1,6 @@
+virtualbox:
+  box:     "centos-7-1708-x86_64"
+  box_url: "https://dl.dropboxusercontent.com/s/7dr5ewj4mvohynu/centos-7-1708-x86_64.box" # If the box is in the current directory (offline instalation), use file://centos-7-1708-x86_64.box"
+vmware:
+  box:     "centos-7-1611-x86_64-vmware"
+  box_url: "https://dl.dropboxusercontent.com/s/6hqh2ntbiyu3srt/centos-7-1611-x86_64-vmware.box"
