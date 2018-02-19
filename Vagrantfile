@@ -3,6 +3,12 @@
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_version ">= 1.6.0"
+
+require 'yaml'
+
+common = YAML.load_file('./puppet/hieradata/common.yaml')
+puppet_run = (common['orautils_nodemanagerautostart_enabled']) ? "once" : "always"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -38,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # in order to enable this shared folder, execute first the following in the host machine: mkdir log_puppet_weblogic && chmod a+rwx log_puppet_weblogic
     #admin.vm.synced_folder "./log_puppet_weblogic", "/tmp/log_puppet_weblogic", :mount_options => ["dmode=777","fmode=777"]
 
-    admin.vm.provision :puppet do |puppet|
+    admin.vm.provision "puppet", run: puppet_run do |puppet|
       puppet.environment_path     = "puppet/environments"
       puppet.environment          = "development"
 
@@ -91,7 +97,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node1.vm.provision :shell, :inline => "ln -sf /vagrant/puppet/hiera.yaml /etc/puppetlabs/code/hiera.yaml;rm -rf /etc/puppetlabs/code/modules;ln -sf /vagrant/puppet/environments/development/modules /etc/puppetlabs/code/modules"
 
-    node1.vm.provision :puppet do |puppet|
+    node1.vm.provision "puppet", run: puppet_run do |puppet|
 
       puppet.environment_path  = "puppet/environments"
       puppet.environment       = "development"
@@ -145,7 +151,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node2.vm.provision :shell, :inline => "ln -sf /vagrant/puppet/hiera.yaml /etc/puppetlabs/code/hiera.yaml;rm -rf /etc/puppetlabs/code/modules;ln -sf /vagrant/puppet/environments/development/modules /etc/puppetlabs/code/modules"
 
-    node2.vm.provision :puppet do |puppet|
+    node2.vm.provision "puppet", run: puppet_run do |puppet|
 
       puppet.environment_path  = "puppet/environments"
       puppet.environment       = "development"
