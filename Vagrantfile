@@ -29,8 +29,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     admin.vm.network :private_network, ip: "10.10.10.10"
 
-    admin.vb.memory = 2512
-    admin.vb.cpus = 2
+    admin.vm.provider :vmware_fusion do |vb|
+      vb.vmx["numvcpus"] = "2"
+      vb.vmx["memsize"] = "2512"	
+    end	
+	
+    admin.vm.provider :virtualbox do |vb|	
+      vb.customize ["modifyvm", :id, "--memory", "2512"]	
+      vb.customize ["modifyvm", :id, "--cpus"  , 2]	
+    end
 
     admin.vm.provision :shell, path: "./puppet_config.sh"
 
@@ -78,7 +85,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node1.vm.network :private_network, ip: "10.10.10.100"
 
-    node1.vm.provider.memory = 2512
+    node1.vm.provider :vmware_fusion do |vb|
+      vb.vmx["numvcpus"] = "1"	
+      vb.vmx["memsize"] = "2512"	
+    end	
+	
+    node1.vm.provider :virtualbox do |vb|	
+      vb.customize ["modifyvm", :id, "--memory", "2512"]
+    end
 
     node1.vm.provision :shell, path: "./puppet_config.sh"
 
@@ -124,7 +138,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     node2.vm.network :private_network, ip: "10.10.10.200", auto_correct: true
 
-    node2.vm.provider.memory = 2512
+    node2.vm.provider :vmware_fusion do |vb|
+      vb.vmx["numvcpus"] = "1"	
+      vb.vmx["memsize"] = "2512"	
+    end	
+	
+    node2.vm.provider :virtualbox do |vb|	
+      vb.customize ["modifyvm", :id, "--memory", "2512"]
+    end
 
     node2.vm.provision :shell, path: "./puppet_config.sh"
 
