@@ -15,17 +15,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "admin" , primary: true do |admin|
 
-    admin.vm.box = boxes['virtualbox.box']
-    admin.vm.box_url = boxes['virtualbox.box_url']
+    admin.vm.box = boxes['virtualbox']['box']
+    admin.vm.box_url = boxes['virtualbox']['box_url']
 
     admin.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = boxes['vmware.box']
-      override.vm.box_url = boxes['vmware.box_url']
+      override.vm.box = boxes['vmware']['box']
+      override.vm.box_url = boxes['vmware']['box_url']
     end
 
     admin.vm.hostname = "admin.example.com"
     admin.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    admin.vm.synced_folder "/Users/edwinbiemond/software", "/software"
+    admin.vm.synced_folder "./software", "/software"
 
     admin.vm.network :private_network, ip: "10.10.10.10"
 
@@ -71,17 +71,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node1" do |node1|
 
-    node1.vm.box = boxes['virtualbox.box']
-    node1.vm.box_url = boxes['virtualbox.box_url']
+    node1.vm.box = boxes['virtualbox']['box']
+    node1.vm.box_url = boxes['virtualbox']['box_url']
 
     node1.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = boxes['vmware.box']
-      override.vm.box_url = boxes['vmware.box_url']
+      override.vm.box = boxes['vmware']['box']
+      override.vm.box_url = boxes['vmware']['box_url']
     end
 
     node1.vm.hostname = "node1.example.com"
     node1.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    node1.vm.synced_folder "/Users/edwinbiemond/software", "/software"
+    node1.vm.synced_folder "./software", "/software"
 
     node1.vm.network :private_network, ip: "10.10.10.100"
 
@@ -124,17 +124,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node2" do |node2|
 
-    node2.vm.box = boxes['virtualbox.box']
-    node2.vm.box_url = boxes['virtualbox.box_url']
+    node2.vm.box = boxes['virtualbox']['box']
+    node2.vm.box_url = boxes['virtualbox']['box_url']
 
     node2.vm.provider :vmware_fusion do |v, override|
-      override.vm.box = boxes['vmware.box']
-      override.vm.box_url = boxes['vmware.box_url']
+      override.vm.box = boxes['vmware']['box']
+      override.vm.box_url = boxes['vmware']['box_url']
     end
 
     node2.vm.hostname = "node2.example.com"
     node2.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    node2.vm.synced_folder "/Users/edwinbiemond/software", "/software"
+    node2.vm.synced_folder "./software", "/software"
 
     node2.vm.network :private_network, ip: "10.10.10.200", auto_correct: true
 
