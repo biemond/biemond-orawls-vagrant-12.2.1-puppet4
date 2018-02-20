@@ -22,11 +22,6 @@ The used hiera files https://github.com/biemond/biemond-orawls-vagrant-12.2.1/tr
 
 Add the all the Oracle binaries to /software
 
-edit Vagrantfile and update the software share
-- admin.vm.synced_folder "software", "/software"
-- node1.vm.synced_folder "software", "/software"
-- node2.vm.synced_folder "software", "/software"
-
 ### Software
 - Weblogic 12.2.1.3 [fmw_12.2.1.3.0_wls.jar](http://www.oracle.com/technetwork/middleware/fusion-middleware/downloads/index.html)
 - JDK 8 [jdk-8u151-linux-x64.tar.gz](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
