@@ -38,8 +38,8 @@ wls_version:              &wls_version              12213
 # global OS vars
 wls_source:               &wls_source               "/software"
 wls_jdk_home_dir:         &wls_jdk_home_dir         "/usr/java/latest"
-wls_jdk_version:          &wls_jdk_version          "8u151"
-wls_jdk_full_version:     &wls_jdk_full_version     "jdk1.8.0_151"
+wls_jdk_version:          &wls_jdk_version          "8u161"
+wls_jdk_full_version:     &wls_jdk_full_version     "jdk1.8.0_161"
 wls_log_dir:              &wls_log_dir              "/var/log/weblogic"
 
 wls_domains_dir:          &wls_domains_dir          '/opt/oracle/wlsdomains/domains'

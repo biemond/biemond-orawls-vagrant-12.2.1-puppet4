@@ -133,7 +133,7 @@ nodemanager_instances:
     nodemanager_address:                   *domain_adminserver_address
     domain_name:                           *domain_name
     jsse_enabled:                          *wls_jsse_enabled
-    sleep:                                 21
+    sleep:                                 61
     properties:
       'log_level':                         'INFO'
       'log_count':                         '2'
@@ -149,7 +149,7 @@ nodemanager_instances:
     custom_trust:                          false
     custom_identity:                       false
     nodemanager_secure_listener:           false
-    sleep:                                 21
+    sleep:                                 61
     jsse_enabled:                          *wls_jsse_enabled
 
 
