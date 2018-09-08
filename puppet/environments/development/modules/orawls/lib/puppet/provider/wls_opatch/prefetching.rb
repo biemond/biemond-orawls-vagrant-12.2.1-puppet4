@@ -34,6 +34,9 @@ Puppet::Type.type(:wls_opatch).provide(:prefetching) do
       output = `export ORACLE_HOME=#{oracle_product_home_dir};#{oracle_product_home_dir}/OPatch/opatch #{command} -oh #{oracle_product_home_dir} #{jre_specfied} #{orainst}`
     end
     Puppet.info output
+    if $?.exitstatus != 0
+      raise "Error while executing opatch command"
+    end
     output
   end
 
@@ -52,8 +55,12 @@ Puppet::Type.type(:wls_opatch).provide(:prefetching) do
     else
       raw_list = `#{oracle_product_home_dir}/OPatch/opatch lsinventory -oh #{oracle_product_home_dir} -invPtrLoc #{orainst_dir}/oraInst.loc`
     end
-    Puppet.info raw_list
+    Puppet.debug raw_list
+    if $?.exitstatus != 0
+      raise "Error while executing opatch command"
+    end
     patch_ids = raw_list.scan(/Patch\s.(\d+)\s.*:\sapplied on/).flatten
+    Puppet.debug patch_ids
     patch_ids.collect{|p| "#{oracle_product_home_dir}:#{p}"}
   end
 

@@ -1,5 +1,25 @@
 # History
 
+## 2.0.17
+- opatch upgrade which can be requirement by latest patch bundle
+- raise exception when opatch fails
+- weblogic optional parameter ora_inventory_dir
+- rename systemctl reload declaration to avoid module conflicts
+- bsu memory fix so only executed once
+
+
+## 2.0.16
+- forms 11g patch only runs once now
+- wls_server removed the default '' from log_rotationdir attribute
+
+## 2.0.15
+- fix CdiContainer on wls_domain when used on a < 12.2 domain
+
+## 2.0.14
+- domain + RCU now supports defining the tablespace of the rcu components
+- fix OHS domain template for versions 12.2.1.1 & 12.2.1.3
+- fix failure of nodemanager starting up in case of SOA
+
 ## 2.0.13
 - wls_server add log_rotationdir attribute
 - Domain support for 12.2.1.3

@@ -97,12 +97,21 @@ orawls::weblogic::weblogic_home_dir:         *wls_weblogic_home_dir
 #     fmw_file1:                 "fmw_12.2.1.2.0_osb_Disk1_1of1.zip"
 #     oracle_base_home_dir:      *wls_oracle_base_home_dir
 
-# opatch_instances:
-#   '24910964':
-#     ensure:                   'present'
-#     oracle_product_home_dir:  *wls_middleware_home_dir
-#     patch_id:                 24910964
-#     patch_file:               "p24910964_122120_Generic.zip"
+
+opatchupgrade_instances:
+  '28186730':
+    oracle_product_home_dir:  *wls_middleware_home_dir
+    patch_id:                 6880880
+    patch_file:               "p28186730_139400_Generic.zip"
+    opversion:                13.9.4.0.0
+
+
+opatch_instances:
+  '27912627':
+    ensure:                   'present'
+    oracle_product_home_dir:  *wls_middleware_home_dir
+    patch_id:                 27912627
+    patch_file:               "p27912627_122130_Generic.zip"
 
 # handy WebLogic scripts in /opt/scripts/wls
 orautils::os_oracle_home:      *wls_oracle_base_home_dir

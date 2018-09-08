@@ -68,6 +68,7 @@ If you need support, checkout the [wls_install](https://www.enterprisemodules.co
 - [Installs WebLogic](#weblogic), version 10g, 11g, 12c ( 12.1.1, 12.1.2, 12.1.3, 12.2.1, 12.2.1.X + FMW infrastructure editions )
 - [Apply a BSU patch](#bsu) on a Middleware home ( < 12.1.2 )
 - [Apply a OPatch](#opatch) on a Middleware home ( >= 12.1.2 ) or a Oracle product home
+- [Opatch upgrade](#opatchupgrade) on a Middleware home ( >= 12.1.2 )
 - [Create a WebLogic domain](#domain)
 - [Pack a WebLogic domain](#packdomain)
 - [Copy a WebLogic domain](#copydomain) to a other node with SSH, unpack and enroll to a nodemanager
@@ -551,6 +552,17 @@ __orawls::weblogic_type__ same as weblogic manifest/class but now as define whic
         wls_apps_dir:                 *wls_apps_dir
         require:                      Jdk7::Install7[jdk-8u72-linux-x64]
 
+
+### opatchupgrade
+__orawls::opatchupgrade__ upgrade OPatch on a Middleware home
+
+
+    orawls::opatch {'16175470':
+      ensure                  => "present",
+      oracle_product_home_dir => "/opt/oracle/middleware12c",
+      patch_id                => 16175470,
+      patch_file              => "p16175470_121200_Generic.zip",
+    }
 
 ### opatch
 __orawls::opatch__ apply an OPatch on a Middleware home or a Oracle product home

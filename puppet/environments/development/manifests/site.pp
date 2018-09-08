@@ -14,6 +14,7 @@ node 'admin.example.com' {
   include orautils, jdk7::urandomfix
   # include weblogic
   include fmw
+  include opatchupgrade
   include opatch
   include domains
   include nodemanager, startwls, userconfig
@@ -26,6 +27,7 @@ node 'admin.example.com' {
   include jms
   include mt
   include pack_domain
+
   # include deployments
 
   # # include ora_em_agent
@@ -65,12 +67,12 @@ class os {
     require    => Group['dba'],
   }
 
-  $install = [ 'binutils.x86_64','unzip.x86_64']
+  $install = [ 'binutils.x86_64','unzip.x86_64','psmisc.x86_64']
 
 
-  # package { $install:
-  #   ensure  => present,
-  # }
+  package { $install:
+    ensure  => present,
+  }
 
   class { 'limits':
     config => {
@@ -185,8 +187,15 @@ class fmw{
   create_resources('orawls::fmw',$fmw_installations, $default_params)
 }
 
-class opatch{
+class opatchupgrade{
   require fmw, orawls::weblogic
+  $default_params = {}
+  $opatchupgrade_instances = hiera('opatchupgrade_instances', {})
+  create_resources('orawls::opatchupgrade',$opatchupgrade_instances, $default_params)
+}
+
+class opatch{
+  require fmw, orawls::weblogic, opatchupgrade
   $default_params = {}
   $opatch_instances = hiera('opatch_instances', {})
   create_resources('orawls::opatch',$opatch_instances, $default_params)
