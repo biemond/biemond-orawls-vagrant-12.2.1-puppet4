@@ -1,12 +1,18 @@
 # History
 
+## 2.0.19
+- wls types fix with new lines in the wls output 
+
+## 2.0.18
+- pdk compliant
+
 ## 2.0.17
 - opatch upgrade which can be requirement by latest patch bundle
 - raise exception when opatch fails
 - weblogic optional parameter ora_inventory_dir
 - rename systemctl reload declaration to avoid module conflicts
 - bsu memory fix so only executed once
-
+- disconnect user session on wls daemon to fix open file limits
 
 ## 2.0.16
 - forms 11g patch only runs once now

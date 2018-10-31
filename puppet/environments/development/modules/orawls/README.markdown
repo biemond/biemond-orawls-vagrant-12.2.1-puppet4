@@ -557,12 +557,13 @@ __orawls::weblogic_type__ same as weblogic manifest/class but now as define whic
 __orawls::opatchupgrade__ upgrade OPatch on a Middleware home
 
 
-    orawls::opatch {'16175470':
-      ensure                  => "present",
-      oracle_product_home_dir => "/opt/oracle/middleware12c",
-      patch_id                => 16175470,
-      patch_file              => "p16175470_121200_Generic.zip",
-    }
+    opatchupgrade_instances:
+      '28186730':
+        oracle_product_home_dir:  *wls_middleware_home_dir
+        patch_id:                 6880880
+        patch_file:               "p28186730_139400_Generic.zip"
+        opversion:                13.9.4.0.0
+
 
 ### opatch
 __orawls::opatch__ apply an OPatch on a Middleware home or a Oracle product home
