@@ -6,6 +6,9 @@ Package{allow_virtual => false,}
 
 node 'admin.example.com' {
 
+  $installed_patches = $facts['ora_mdw_opatch_patches']
+  notify {"Value of $installed_patches is ${installed_patches}":}
+
   include os
   include orawls
   include ssh

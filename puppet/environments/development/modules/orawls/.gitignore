@@ -14,7 +14,6 @@
 /junit/
 /log/
 /pkg/
-/spec/reports
 /spec/fixtures/manifests/
 /spec/fixtures/modules/
 /tmp/
@@ -22,3 +21,4 @@
 /convert_report.txt
 /update_report.txt
 .DS_Store
+/spec/reports
